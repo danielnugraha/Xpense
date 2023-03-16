@@ -2,6 +2,6 @@
 
 To start the server, run following command:
 
-vapor run migrate
+1. vapor run migrate
 
-vapor run serve
+2. vapor run serve
