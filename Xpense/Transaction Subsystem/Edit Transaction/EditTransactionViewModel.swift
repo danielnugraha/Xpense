@@ -46,7 +46,7 @@ class EditTransactionViewModel: ObservableObject {
     }
     /// Indicates if the save `Button` should be disabled
     var disableSaveButton: Bool {
-        selectedAccount == nil || description.isEmpty || amount == nil || location == nil
+        selectedAccount == nil || description.isEmpty || amount == nil //|| location == nil
     }
     
     
