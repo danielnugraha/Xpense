@@ -77,7 +77,7 @@ struct EditTransaction: View {
                 }
             }
             
-            //EditTransactionLocation(viewModel: viewModel)
+            EditTransactionLocation(viewModel: viewModel)
         }
     }
 }
