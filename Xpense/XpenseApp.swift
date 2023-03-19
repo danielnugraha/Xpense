@@ -12,7 +12,7 @@ import XpenseModel
 
 @main
 struct XpenseApp: App {
-    @StateObject var model: Model = MockModel()
+    @StateObject var model: Model = RestfulModel()
     
     
     var body: some Scene {

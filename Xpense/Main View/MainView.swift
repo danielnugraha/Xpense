@@ -43,9 +43,6 @@ struct MainView: View {
                         addButton
                     }
                 }
-                .alert(isPresented: $presentUserAlert) {
-                    UserButton.createLogoutAlert(model)
-                }
                 .sheet(isPresented: $presentSheet) {
                     if selectedTab == 1 {
                         EditAccount(model, id: nil)
