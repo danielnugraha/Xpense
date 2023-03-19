@@ -9,7 +9,6 @@
 
 import SwiftUI
 import XpenseModel
-import Combine
 
 
 /// The view model used for the `SaveButton`
@@ -33,10 +32,7 @@ struct SaveButton<M: SaveButtonViewModel>: View {
     
     /// The `SaveButtonViewModel` that manages the content of the view
     @ObservedObject var viewModel: M
-    
-    /// Keeps a reference to the subscription that subscribes to the save transaction call in the Model
-    @State private var loadingCancellable: AnyCancellable?
-
+    var additionalAction: (() -> Void)?
 
     var body: some View {
         Button(action: save) {
@@ -49,6 +45,7 @@ struct SaveButton<M: SaveButtonViewModel>: View {
 
     /// Saves the element using the view model
     private func save() {
+        additionalAction?()
         Task.init {
             await viewModel.save()
             presentationMode.wrappedValue.dismiss()

@@ -26,6 +26,7 @@ struct TransactionCell: View {
                 HStack(alignment: .top, spacing: 16) {
                     Text(transaction.description)
                         .font(Font.system(size: 22, weight: .bold))
+                        .foregroundColor(.primary)
                     Spacer()
                     Text(transaction.amountDescription)
                         .currencyViewModifier(size: 22,

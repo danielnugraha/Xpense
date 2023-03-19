@@ -28,7 +28,9 @@ struct EditAccount: View {
                 if viewModel.id != nil {
                     DeleteButton(viewModel: viewModel)
                 }
-            }.onAppear(perform: viewModel.updateStates)
+            }.task {
+                viewModel.updateStates()
+            }
                 .navigationBarTitle(viewModel.id == nil ? "Add Account" : "Edit Account", displayMode: .inline)
                 .toolbar {
                     SaveButton(viewModel: viewModel)

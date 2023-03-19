@@ -25,23 +25,6 @@ struct EditTransaction: View {
     @ObservedObject private var viewModel: EditTransactionViewModel
     @FocusState private var focusedField: Field?
     
-    /// A `Binding` that is used to translate the output of a `TextField` to a double value according to the `NumberFormatter.decimalAmount` defined
-    /// in the XpenseModel Swift Package.
-    ///
-    /// This is a workaround as using a `NumberFormatter` in the `TextField` does currently not work in our use case.
-    var amountString: Binding<String> {
-        Binding(get: {
-            guard let amount = viewModel.amount else {
-                return ""
-            }
-            return NumberFormatter.decimalAmount.string(from: NSNumber(value: amount)) ?? ""
-        }, set: {
-            print($0)
-            viewModel.amount = NumberFormatter.decimalAmount.number(from: $0)?.doubleValue
-        })
-    }
-    
-    
     /// The title in the navigation bar for this view
     var navigationTitle: String {
         viewModel.id == nil ? "Create Transaction" : "Edit Transaction"
@@ -51,9 +34,7 @@ struct EditTransaction: View {
     /// - Parameter id: The `Transaction`'s identifier that should be edited
     init(_ model: Model, id: XpenseModel.Transaction.ID) {
         viewModel = EditTransactionViewModel(model, id: id)
-        
     }
-    
     
     var body: some View {
         NavigationStack {
@@ -64,10 +45,9 @@ struct EditTransaction: View {
                 .navigationBarTitle(navigationTitle, displayMode: .inline)
                 .toolbar {
                     ToolbarItem(placement: .primaryAction) {
-                        SaveButton(viewModel: viewModel)
-                            .onTapGesture {
-                                focusedField = nil
-                            }
+                        SaveButton(viewModel: viewModel) {
+                            focusedField = nil
+                        }
                     }
                 }
                 .alert(isPresented: viewModel.presentingErrorMessage) {
@@ -116,9 +96,6 @@ struct EditTransaction: View {
                            in: ...Date(),
                            displayedComponents: [.date, .hourAndMinute]) {
                     Text("Date")
-                }
-                Button(action: {focusedField = nil}) {
-                    Text("Unfocus")
                 }
             }
             

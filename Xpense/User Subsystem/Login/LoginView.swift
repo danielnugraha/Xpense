@@ -35,7 +35,9 @@ struct LoginView: View {
                     .frame(maxWidth: 450)
                     .transition(.opacity)
             }
-        }.onAppear(perform: onAppear)
+        }.task {
+            animate()
+        }
     }
     
     
@@ -46,7 +48,7 @@ struct LoginView: View {
     
     
     /// Starts the appear `Animation` of the `LoginView`
-    func onAppear() {
+    func animate() {
         let animation = Animation
             .easeInOut(duration: 0.5)
             .delay(1)

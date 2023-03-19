@@ -31,7 +31,7 @@ struct LocationView: View {
         Map(coordinateRegion: $coordinateRegion,
             annotationItems: [IdentifiableCoordinate2DWrapper(coordinate: coordinate)]) { coordinateWrapper in
             MapMarker(coordinate: coordinateWrapper.coordinate)
-        }.onAppear {
+        }.task {
             coordinateRegion.center = coordinate
         }
     }

@@ -31,7 +31,7 @@ struct TransactionsList: View {
             ForEach(transactions) { transaction in
                 Button(action: { model.path.append(transaction) }) {
                     TransactionCell(id: transaction.id)
-                }.foregroundColor(.black)
+                }
             }.onDelete(perform: delete(at:))
         }
     }

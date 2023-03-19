@@ -39,7 +39,7 @@ struct AccountsGrid: View {
                                 .font(.system(size: 18, weight: .light))
                                 .foregroundColor(.secondary)
                         }.padding()
-                    }.font(.body)
+                    }
                 }
             }
         }
