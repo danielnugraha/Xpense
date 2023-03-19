@@ -25,10 +25,10 @@ struct MainView: View {
     
     
     var body: some View {
-        if model.user == nil {
-            LoginView(model)
-        } else {
-            NavigationStack(path: $model.path) {
+        NavigationStack(path: $model.path) {
+            if model.user == nil {
+                LoginView(model)
+            } else {
                 TabView(selection: $selectedTab) {
                     AccountsOverview()
                     TransactionsOverview()

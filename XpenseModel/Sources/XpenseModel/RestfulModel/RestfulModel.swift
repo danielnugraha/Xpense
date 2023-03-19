@@ -16,7 +16,7 @@ import Foundation
 public class RestfulModel: Model {
     /// The base route that is used to access the RESTful server
     static var baseURL: URL = {
-        guard let baseURL = URL(string: "http://localhost:8080/v1/") else {
+        guard let baseURL = URL(string: "http://127.0.0.1:8080/v1/") else {
             fatalError("Coult not create the base URL for the Xpense Server")
         }
         return baseURL
@@ -76,7 +76,6 @@ public class RestfulModel: Model {
                 self.transactions = transactions
             }
         } catch {
-            print(error)
             self.setServerError(to:.loadingFailed(Transaction.self))
         }
     }

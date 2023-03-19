@@ -28,8 +28,7 @@ extension RestfulModel {
             
             await sendLoginRequest(name, password: password)
         } catch {
-            print(error)
-            _ = self.setServerError(to: .signUpFailed)
+            self.setServerError(to: .signUpFailed)
         }
     }
 
@@ -59,7 +58,6 @@ extension RestfulModel {
                 self.user = userToken
             }
         } catch {
-            print(error)
             self.setServerError(to: .loginFailed)
         }
     }

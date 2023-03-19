@@ -17,11 +17,6 @@ struct TransactionSummary: View {
     /// The `Model` the   `Transaction` shall be read from
     @EnvironmentObject private var model: Model
     
-    /// Indicate whether to disable the navigation link in the Transaction Summary's `Account` detail link
-    var disableLink: Bool {
-        model.path.count >= 2
-    }
-    
     /// The `Transaction`'s identifier that should be displayed
     var id: XpenseModel.Transaction.ID
     
@@ -39,7 +34,7 @@ struct TransactionSummary: View {
                     Text(transaction.dateDescription)
                 }.foregroundColor(.secondary)
                 
-                AccountDetailLink(disableLink: disableLink, id: transaction.account)
+                AccountDetailLink(id: transaction.account)
                 
                 transaction.location?.clCoordinate.map { coordinate in
                     LocationDetailLink(coordinate: coordinate,

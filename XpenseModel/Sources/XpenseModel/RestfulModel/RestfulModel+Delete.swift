@@ -27,7 +27,6 @@ extension RestfulModel {
                 }
             }
         } catch {
-            print(error)
             DispatchQueue.main.async {
                 self.setServerError(to: .deleteFailed(Element.self))
             }

@@ -17,7 +17,9 @@ struct AccountDetailLink: View {
     /// The `Model` the   `Account` shall be read from
     @EnvironmentObject private var model: Model
     /// Indicate whether to disable the navigation link
-    var disableLink: Bool
+    var disableLink: Bool {
+        model.path.count >= 2
+    }
     
     /// The `Account`'s identifier that should be used to display the corresponding `Account`
     ///
@@ -31,15 +33,14 @@ struct AccountDetailLink: View {
     
     var body: some View {
         model.account(id).map { account in
-            HStack {
-                Text(account.name)
-                Spacer()
-                if disableLink {
-                    Image(systemName: "chevron.right")
+            Button(action: { model.path.append(account) }) {
+                HStack {
+                    Text(account.name)
+                    Spacer()
+                    if disableLink {
+                        Image(systemName: "chevron.right")
+                    }
                 }
-            }
-            .onTapGesture {
-                model.path.append(account)
             }
             .padding(16)
                 .cardViewModifier()
@@ -59,7 +60,7 @@ struct AccountDetailLink_Previews: PreviewProvider {
     
     static var previews: some View {
         ForEach(ContentSizeCategory.allCases, id: \.hashValue) { contentSizeCategory in
-            AccountDetailLink(disableLink: false, id: accountId)
+            AccountDetailLink(id: accountId)
                 .environment(\.sizeCategory, contentSizeCategory)
         }.environmentObject(model)
             .background(Color("BackgroundColor"))
