@@ -44,7 +44,6 @@ extension Account {
                 .id()
                 .field("name", .string, .required)
                 .field("user_id", .uuid, .required, .references("users", "id"))
-                .field("transactions", .array(of: .uuid), .references("transactions", "id"))
                 .create()
         }
         

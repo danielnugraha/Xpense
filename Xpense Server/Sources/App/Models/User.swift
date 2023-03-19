@@ -61,7 +61,6 @@ extension User {
                 .id()
                 .field("username", .string, .required)
                 .field("password_hash", .string, .required)
-                .field("accounts", .array(of: .uuid), .references("accounts", "id"))
                 .create()
         }
         
