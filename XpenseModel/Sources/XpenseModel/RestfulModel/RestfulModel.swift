@@ -16,39 +16,85 @@ import Foundation
 public class RestfulModel: Model {
     /// The base route that is used to access the RESTful server
     static var baseURL: URL = {
-        guard let baseURL = URL(string: "http://localhost:8080/v1/") else {
+        guard let baseURL = URL(string: "http://127.0.0.1:8080/v1/") else {
             fatalError("Coult not create the base URL for the Xpense Server")
         }
         return baseURL
     }()
     
     public override func save(_ account: Account) async {
-        await saveElement(account, to: \.accounts)
+        do {
+            try await saveElement(account, to: \.accounts)
+        } catch {
+            DispatchQueue.main.async {
+                self.setServerError(to: .saveFailed(Account.self))
+            }
+            return
+        }
+        
         await refresh()
     }
     
     public override func save(_ transaction: Transaction) async {
-        await saveElement(transaction, to: \.transactions)
+        do {
+            try await saveElement(transaction, to: \.transactions)
+        } catch {
+            DispatchQueue.main.async {
+                self.setServerError(to: .saveFailed(Transaction.self))
+            }
+            return
+        }
+        
         await refresh()
     }
     
     public override func delete(account id: Account.ID) async {
-        await delete(id, in: \.accounts)
+        do {
+            try await delete(id, in: \.accounts)
+        } catch {
+            DispatchQueue.main.async {
+                self.setServerError(to: .deleteFailed(Account.self))
+            }
+            return
+        }
+        
         await refresh()
     }
     
     public override func delete(transaction id: Transaction.ID) async {
-        await delete(id, in: \.transactions)
+        do {
+            try await delete(id, in: \.transactions)
+        } catch {
+            DispatchQueue.main.async {
+                self.setServerError(to: .deleteFailed(Account.self))
+            }
+            return
+        }
+        
         await refresh()
     }
     
     public override func signUp(_ name: String, password: String) async {
-        await sendSignUpRequest(name, password: password)
+        do {
+            try await sendSignUpRequest(name, password: password)
+        } catch {
+            self.setServerError(to: .signUpFailed)
+            return
+        }
+        do {
+            try await sendLoginRequest(name, password: password)
+        } catch {
+            self.setServerError(to: .loginFailed)
+        }
         await refresh()
     }
 
     public override func login(_ name: String, password: String) async {
-        await sendLoginRequest(name, password: password)
+        do {
+            try await sendLoginRequest(name, password: password)
+        } catch {
+            self.setServerError(to: .loginFailed)
+        }
         await refresh()
     }
     
@@ -56,7 +102,9 @@ public class RestfulModel: Model {
     /// - Parameter error: The `XpenseServiceError` that should be set
     /// - Returns: The `XpenseServiceError` passed in as an argument
     func setServerError(to error: XpenseServiceError) {
-        self.serverError = error
+        DispatchQueue.main.async {
+            self.serverError = error
+        }
     }
     
     /// Refreshes the `Accounts` and `Transaction` in the `Model`
@@ -68,6 +116,7 @@ public class RestfulModel: Model {
             }
         } catch {
             self.setServerError(to:.loadingFailed(Account.self))
+            return
         }
         
         do {
@@ -76,7 +125,6 @@ public class RestfulModel: Model {
                 self.transactions = transactions
             }
         } catch {
-            print(error)
             self.setServerError(to:.loadingFailed(Transaction.self))
         }
     }

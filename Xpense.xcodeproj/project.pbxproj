@@ -14,7 +14,6 @@
 		21558DE229BA1E310033C01F /* TransactionsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21558DAE29BA1E310033C01F /* TransactionsList.swift */; };
 		21558DE429BA1E310033C01F /* EditTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21558DB129BA1E310033C01F /* EditTransaction.swift */; };
 		21558DE529BA1E310033C01F /* EditTransactionLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21558DB229BA1E310033C01F /* EditTransactionLocation.swift */; };
-		21558DE629BA1E310033C01F /* EditTansactionAmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21558DB329BA1E310033C01F /* EditTansactionAmountView.swift */; };
 		21558DE729BA1E310033C01F /* EditTransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21558DB429BA1E310033C01F /* EditTransactionViewModel.swift */; };
 		21558DE829BA1E310033C01F /* TransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21558DB629BA1E310033C01F /* TransactionView.swift */; };
 		21558DE929BA1E310033C01F /* AccountDetailLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21558DB729BA1E310033C01F /* AccountDetailLink.swift */; };
@@ -61,7 +60,6 @@
 		21558DAE29BA1E310033C01F /* TransactionsList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionsList.swift; sourceTree = "<group>"; };
 		21558DB129BA1E310033C01F /* EditTransaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTransaction.swift; sourceTree = "<group>"; };
 		21558DB229BA1E310033C01F /* EditTransactionLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTransactionLocation.swift; sourceTree = "<group>"; };
-		21558DB329BA1E310033C01F /* EditTansactionAmountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTansactionAmountView.swift; sourceTree = "<group>"; };
 		21558DB429BA1E310033C01F /* EditTransactionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTransactionViewModel.swift; sourceTree = "<group>"; };
 		21558DB629BA1E310033C01F /* TransactionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionView.swift; sourceTree = "<group>"; };
 		21558DB729BA1E310033C01F /* AccountDetailLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDetailLink.swift; sourceTree = "<group>"; };
@@ -97,6 +95,7 @@
 		21AE1F5529BF18C200EB4CBD /* BackgroundViewModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundViewModifier.swift; sourceTree = "<group>"; };
 		21AE1F5729BF1ACC00EB4CBD /* AccountsOverview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsOverview.swift; sourceTree = "<group>"; };
 		21AE1F5929BF1B5500EB4CBD /* TransactionsOverview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionsOverview.swift; sourceTree = "<group>"; };
+		21F94C1229C6706000F29929 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +132,7 @@
 		21558D9729B891A80033C01F /* Xpense */ = {
 			isa = PBXGroup;
 			children = (
+				21F94C1229C6706000F29929 /* Info.plist */,
 				21558D9829B891A80033C01F /* XpenseApp.swift */,
 				21558DBE29BA1E310033C01F /* Account Subsystem */,
 				21558DB929BA1E310033C01F /* Location Subsystem */,
@@ -185,7 +185,6 @@
 			children = (
 				21558DB129BA1E310033C01F /* EditTransaction.swift */,
 				21558DB229BA1E310033C01F /* EditTransactionLocation.swift */,
-				21558DB329BA1E310033C01F /* EditTansactionAmountView.swift */,
 				21558DB429BA1E310033C01F /* EditTransactionViewModel.swift */,
 			);
 			path = "Edit Transaction";
@@ -401,7 +400,6 @@
 				21558DEA29BA1E310033C01F /* TransactionSummary.swift in Sources */,
 				21558E0129BA1E310033C01F /* LoginButtons.swift in Sources */,
 				21558DF529BA1E310033C01F /* AccountView.swift in Sources */,
-				21558DE629BA1E310033C01F /* EditTansactionAmountView.swift in Sources */,
 				21558DF029BA1E310033C01F /* AccountBackground.swift in Sources */,
 				21AE1F5829BF1ACC00EB4CBD /* AccountsOverview.swift in Sources */,
 				21558DFB29BA1E310033C01F /* UserButton.swift in Sources */,
@@ -557,7 +555,7 @@
 				DEVELOPMENT_TEAM = 7PLLZ436SG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = Xpense/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -586,7 +584,7 @@
 				DEVELOPMENT_TEAM = 7PLLZ436SG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = Xpense/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

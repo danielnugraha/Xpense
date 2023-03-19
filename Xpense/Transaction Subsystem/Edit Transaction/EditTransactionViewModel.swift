@@ -65,7 +65,7 @@ class EditTransactionViewModel: ObservableObject {
         }
         
         // Fill attributes from existing transaction
-        self.amount = Double(abs(transaction.amount))
+        self.amount = centToDouble(cent: abs(transaction.amount))
         self.classification = transaction.classification
         self.description = transaction.description
         self.date = transaction.date
@@ -85,9 +85,9 @@ class EditTransactionViewModel: ObservableObject {
               let model = model else {
             return
         }
-        
+    
         let transaction = Transaction(id: self.id,
-                                      amount: Transaction.Cent(amount) * classification.factor,
+                                      amount: doubleToCent(double: amount) * classification.factor,
                                       description: self.description,
                                       date: self.date,
                                       location: Coordinate(location),
@@ -102,6 +102,14 @@ class EditTransactionViewModel: ObservableObject {
             self.updateStates()
             self.showSaveProgressView = false
         }
+    }
+    
+    private func centToDouble(cent: Int) -> Double {
+        Double(cent) / 100
+    }
+    
+    private func doubleToCent(double: Double) -> Int {
+        Int(double * 100)
     }
 }
 

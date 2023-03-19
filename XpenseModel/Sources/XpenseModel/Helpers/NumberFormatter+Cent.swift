@@ -21,17 +21,6 @@ extension NumberFormatter {
         return numberFormatter
     }()
     
-    /// Converts a cent-value to a readable currency value without the currency symbol.
-    ///
-    /// Example: 152345 -> 1,52
-    public static let decimalAmount: NumberFormatter = {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.multiplier = 0.01
-        numberFormatter.maximumFractionDigits = 2
-        return numberFormatter
-    }()
-    
-    
     /// Converts an amount of cents into it's corresponding currency representation.
     /// We use this method to minimize the number of times in our code where we convert a Double to an NSNumber.
     ///

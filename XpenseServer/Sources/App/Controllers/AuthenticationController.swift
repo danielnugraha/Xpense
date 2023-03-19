@@ -18,13 +18,14 @@ struct AuthenticationController: RouteCollection {
         passwordProtected.post("login", use: login)
     }
     
-    func createUser(req: Request) async throws -> String {
-        let newUser = try req.content.decode(User.Input.self)
+    func createUser(req: Request) async throws -> User.InputOutput {
+        var newUser = try req.content.decode(User.InputOutput.self)
         let passwordHash = try Bcrypt.hash(newUser.password)
         let user = User(id: UUID(), name: newUser.name, passwordHash: passwordHash)
         try await user.create(on: req.db)
         
-        return user.name
+        newUser.password = passwordHash
+        return newUser
     }
     
     func login(req: Request) async throws -> UserToken.Output {

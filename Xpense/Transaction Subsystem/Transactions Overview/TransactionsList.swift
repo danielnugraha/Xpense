@@ -29,10 +29,9 @@ struct TransactionsList: View {
     var body: some View {
         List {
             ForEach(transactions) { transaction in
-                TransactionCell(id: transaction.id)
-                    .onTapGesture {
-                        model.path.append(transaction)
-                    }
+                Button(action: { model.path.append(transaction) }) {
+                    TransactionCell(id: transaction.id)
+                }
             }.onDelete(perform: delete(at:))
         }
     }

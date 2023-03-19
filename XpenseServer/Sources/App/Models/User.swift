@@ -71,7 +71,7 @@ extension User {
 }
 
 extension User {
-    struct Input: Decodable {
+    struct InputOutput: Content {
         var name: String
         var password: String
     }

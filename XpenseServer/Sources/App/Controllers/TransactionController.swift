@@ -54,7 +54,7 @@ struct TransactionController: RouteCollection {
         let user = try req.auth.require(User.self)
         let newTransaction = try req.content.decode(Transaction.InputOutput.self)
         
-        guard var transaction = try await Transaction.find(
+        guard let transaction = try await Transaction.find(
             newTransaction.id,
             on: req.db
         ) else {
@@ -62,11 +62,11 @@ struct TransactionController: RouteCollection {
         }
         
         let transAccount = try await transaction.$account.get(on: req.db)
-        guard transAccount.$user.id == user.id else {
+        guard transAccount.$user.id == user.id && transaction.id == newTransaction.id else {
             throw Abort(.forbidden)
         }
         
-        transaction = newTransaction.toTransaction()
+        transaction.update(with: newTransaction)
         
         try await transaction.save(on: req.db)
         return transaction.toInputOutput()

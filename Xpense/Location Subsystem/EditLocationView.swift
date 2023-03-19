@@ -44,7 +44,7 @@ struct EditLocationView: View {
                     .foregroundColor(.red)
             }
                 .navigationBarTitleDisplayMode(.inline)
-                .onAppear {
+                .task {
                     if let coordinate = coordinate {
                         coordinateRegion.center = coordinate
                         coordinateRegion.span = LocationView.Defaults.span

@@ -18,22 +18,15 @@ extension RestfulModel {
     ///   - element: The `Restful` element that should be saved
     ///   - collection: The collection where the element should be saved in once a response has arrived
     /// - Returns: A `Future` that completes once the resonses from the server have arrived and have been processed
-    func saveElement<Element: Restful>(_ element: Element, to collection: ReferenceWritableKeyPath<RestfulModel, [Element]>) async {
-        
-        do {
-            let newElement: Element
-            if self[keyPath: collection].contains(where: { $0.id == element.id }) {
-                newElement = try await element.put()
-            } else {
-                newElement = try await element.post()
-            }
-            DispatchQueue.main.async {
-                self[keyPath: collection].replaceAndSort(newElement)
-            }
-        } catch {
-            DispatchQueue.main.async {
-                self.setServerError(to: .saveFailed(Element.self))
-            }
+    func saveElement<Element: Restful>(_ element: Element, to collection: ReferenceWritableKeyPath<RestfulModel, [Element]>) async throws {
+        let newElement: Element
+        if self[keyPath: collection].contains(where: { $0.id == element.id }) {
+            newElement = try await element.put()
+        } else {
+            newElement = try await element.post()
+        }
+        DispatchQueue.main.async {
+            self[keyPath: collection].replaceAndSort(newElement)
         }
     }
 }

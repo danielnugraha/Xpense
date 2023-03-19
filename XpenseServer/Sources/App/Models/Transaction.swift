@@ -108,4 +108,20 @@ extension Transaction {
             return InputOutput(id: id, amount: amount, description: description, date: date, account: account.id!)
         }
     }
+    
+    func update(with newTransaction: InputOutput) {
+        self.amount = newTransaction.amount
+        self.description = newTransaction.description
+        self.date = newTransaction.date
+        
+        if let location = newTransaction.location {
+            self.latitude = location.latitude
+            self.longitude = location.longitude
+        } else {
+            self.latitude = nil
+            self.longitude = nil
+        }
+        
+        self.$account.id = newTransaction.account
+    }
 }

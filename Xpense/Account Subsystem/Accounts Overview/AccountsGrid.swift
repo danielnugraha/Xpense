@@ -30,16 +30,16 @@ struct AccountsGrid: View {
                 ZStack {
                     AccountBackground()
                         .frame(height: 140)
-                    VStack(spacing: 4) {
-                        Text(account.name)
-                            .font(.system(size: 24, weight: .medium))
-                            .foregroundColor(.primary)
-                        Text(NumberFormatter.currencyRepresentation(from: account.balance(model)) ?? "")
-                            .font(.system(size: 18, weight: .light))
-                            .foregroundColor(.secondary)
-                    }.padding()
-                }.onTapGesture {
-                    model.path.append(account)
+                    Button(action: { model.path.append(account) }) {
+                        VStack(spacing: 4) {
+                            Text(account.name)
+                                .font(.system(size: 24, weight: .medium))
+                                .foregroundColor(.primary)
+                            Text(NumberFormatter.currencyRepresentation(from: account.balance(model)) ?? "")
+                                .font(.system(size: 18, weight: .light))
+                                .foregroundColor(.secondary)
+                        }.padding()
+                    }
                 }
             }
         }
