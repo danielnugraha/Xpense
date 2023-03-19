@@ -20,7 +20,6 @@ extension RestfulModel {
     /// - Returns: An `AnyPublisher` that finishes once the sign in resonse arrived and the response was handled
     func sendSignUpRequest(_ name: String, password: String) async throws {
         let usersRoute = RestfulModel.baseURL.appendingPathComponent("users")
-        
         _ = try await NetworkManager.postElement(
             SignUpMediator(name: name, password: password),
             on: usersRoute)

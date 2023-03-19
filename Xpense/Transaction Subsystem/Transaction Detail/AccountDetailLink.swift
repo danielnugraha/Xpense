@@ -37,16 +37,16 @@ struct AccountDetailLink: View {
                 HStack {
                     Text(account.name)
                     Spacer()
-                    if disableLink {
+                    if !disableLink {
                         Image(systemName: "chevron.right")
                     }
                 }
             }
             .padding(16)
-                .cardViewModifier()
-                .foregroundColor(.primary)
-                .padding(16)
-                    .disabled(disableLink)
+            .cardViewModifier()
+            .foregroundColor(.primary)
+            .padding(16)
+            .disabled(disableLink)
         }
     }
 }
