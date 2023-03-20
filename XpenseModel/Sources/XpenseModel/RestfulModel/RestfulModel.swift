@@ -90,11 +90,11 @@ public class RestfulModel: Model {
         await refresh()
     }
 
-    public override func refreshAccounts() async throws -> [Account] {
+    override func loadAccounts() async throws -> [Account] {
         try await Account.get()
     }
 
-    public override func refreshTransactions() async throws -> [Transaction] {
+    override func loadTransactions() async throws -> [Transaction] {
         try await Transaction.get()
     }
 }

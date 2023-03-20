@@ -60,8 +60,19 @@ public class Model: ObservableObject {
     /// Note: This method must be overwritten by the concrete instantiation of the Model.
     /// - Returns: Returns the fetched list of accounts.
     /// - Throws: Throws an `XpenseServiceError` on any failure to fetch the latest state.
-    public func refreshAccounts() async throws -> [Account] {
-        fatalError("Stub not implemented!")
+    public func refreshAccounts() async {
+        do {
+            let accounts = try await loadAccounts()
+            await MainActor.run {
+                self.accounts = accounts
+            }
+        } catch {
+            await setServerError(to: .loadingFailed(Account.self))
+        }
+    }
+
+    func loadAccounts() async throws -> [Account] {
+        accounts
     }
 
 
@@ -70,7 +81,18 @@ public class Model: ObservableObject {
     /// Note: This method must be overwritten by the concrete instantiation of the Model.
     /// - Returns: Returns the fetched list of transactions.
     /// - Throws: Throws an `XpenseServiceError` on any failure to fetch the latest state.
-    public func refreshTransactions() async throws -> [Transaction] {
+    public func refreshTransactions() async {
+        do {
+            let transactions = try await loadTransactions()
+            await MainActor.run {
+                self.transactions = transactions
+            }
+        } catch {
+            await setServerError(to: .loadingFailed(Transaction.self))
+        }
+    }
+
+    func loadTransactions() async throws -> [Transaction] {
         fatalError("Stub not implemented!")
     }
     
@@ -166,15 +188,15 @@ public class Model: ObservableObject {
     /// Refreshes the `Accounts` and `Transaction` in the `Model`
     public func refresh() async {
         do {
-            let accounts = try await refreshAccounts()
-            let transactions = try await refreshTransactions()
+            let accounts = try await loadAccounts()
+            let transactions = try await loadTransactions()
 
             await MainActor.run {
                 self.accounts = accounts
                 self.transactions = transactions
             }
         } catch {
-            await setServerError(to: .saveFailed(Account.self))
+            await setServerError(to: error as! XpenseServiceError)
         }
     }
     
