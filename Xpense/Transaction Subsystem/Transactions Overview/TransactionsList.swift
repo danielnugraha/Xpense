@@ -3,7 +3,8 @@
 //  Xpense
 //
 //  Created by Paul Schmiedmayer on 10/11/19.
-//  Copyright © 2020 TUM LS1. All rights reserved.
+//  Rewritten by Daniel Nugraha on 20/03/23.
+//  Copyright © 2023 TUM LS1. All rights reserved.
 //
 
 import SwiftUI
@@ -15,6 +16,8 @@ import XpenseModel
 struct TransactionsList: View {
     /// The model to read the transactions from
     @EnvironmentObject private var model: Model
+    
+    @Binding var path: [ContentLink]
     
     /// A filter function that is used to filter the `Transaction`s in the Xpense Application that should be displayed in the `TransactionsList`
     var filter: (XpenseModel.Transaction) -> Bool = { _ in true }
@@ -29,7 +32,7 @@ struct TransactionsList: View {
     var body: some View {
         List {
             ForEach(transactions) { transaction in
-                Button(action: { model.path.append(transaction) }) {
+                Button(action: { path.append(.transactionLink(id: transaction.id)) }) {
                     TransactionCell(id: transaction.id)
                 }
             }.onDelete(perform: delete(at:))
@@ -46,6 +49,17 @@ struct TransactionsList: View {
             .forEach { transaction in
                 Task.init {
                     await self.model.delete(transaction: transaction)
+                    let deletedInPath = self.path.contains { contentLink in
+                        switch contentLink {
+                        case .transactionLink(let id):
+                            return id == transaction
+                        default:
+                            return false
+                        }
+                    }
+                    if deletedInPath {
+                        self.path = []
+                    }
                 }
             }
     }
@@ -54,9 +68,10 @@ struct TransactionsList: View {
 
 // MARK: - TransactionsList Previews
 struct TransactionsList_Previews: PreviewProvider {
+    @State static var path: [ContentLink] = []
     static var previews: some View {
         NavigationStack {
-            TransactionsList()
+            TransactionsList(path: $path)
                 .navigationTitle("Transactions")
         }.environmentObject(MockModel() as Model)
     }

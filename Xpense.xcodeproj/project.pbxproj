@@ -49,6 +49,7 @@
 		21AE1F5629BF18C200EB4CBD /* BackgroundViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AE1F5529BF18C200EB4CBD /* BackgroundViewModifier.swift */; };
 		21AE1F5829BF1ACC00EB4CBD /* AccountsOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AE1F5729BF1ACC00EB4CBD /* AccountsOverview.swift */; };
 		21AE1F5A29BF1B5500EB4CBD /* TransactionsOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AE1F5929BF1B5500EB4CBD /* TransactionsOverview.swift */; };
+		21F94C1429C8ACD300F29929 /* ContentCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F94C1329C8ACD300F29929 /* ContentCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +97,7 @@
 		21AE1F5729BF1ACC00EB4CBD /* AccountsOverview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsOverview.swift; sourceTree = "<group>"; };
 		21AE1F5929BF1B5500EB4CBD /* TransactionsOverview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionsOverview.swift; sourceTree = "<group>"; };
 		21F94C1229C6706000F29929 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		21F94C1329C8ACD300F29929 /* ContentCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -257,6 +259,7 @@
 			children = (
 				21558DCD29BA1E310033C01F /* ErrorViewModel.swift */,
 				21558DCE29BA1E310033C01F /* MainView.swift */,
+				21F94C1329C8ACD300F29929 /* ContentCoordinator.swift */,
 			);
 			path = "Main View";
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 				21558DFC29BA1E310033C01F /* LoginViewModel.swift in Sources */,
 				21558DED29BA1E310033C01F /* EditLocationView.swift in Sources */,
 				21558E0029BA1E310033C01F /* LoginView.swift in Sources */,
+				21F94C1429C8ACD300F29929 /* ContentCoordinator.swift in Sources */,
 				21558DEA29BA1E310033C01F /* TransactionSummary.swift in Sources */,
 				21558E0129BA1E310033C01F /* LoginButtons.swift in Sources */,
 				21558DF529BA1E310033C01F /* AccountView.swift in Sources */,

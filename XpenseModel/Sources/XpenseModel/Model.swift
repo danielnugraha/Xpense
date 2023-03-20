@@ -2,7 +2,7 @@
 //
 //  Created by Paul Schmiedmayer on 10/11/19.
 //  Rewritten by Daniel Nugraha on 06/03/23.
-//  Copyright © 2020 TUM LS1. All rights reserved.
+//  Copyright © 2023 TUM LS1. All rights reserved.
 //
 
 import Foundation
@@ -20,8 +20,6 @@ public class Model: ObservableObject {
     @Published public internal(set) var transactions: [Transaction]
     /// A `XpenseServiceError` that should be displayed to the user in case of an error in relation with the Xpense Server
     @Published public internal(set) var serverError: XpenseServiceError?
-    
-    @Published public var path = NavigationPath()
 
     /// The current total balance of all `Account`s that are stored in the `Model` instance
     public var currentBalance: Transaction.Cent {

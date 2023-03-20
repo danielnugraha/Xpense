@@ -3,7 +3,7 @@
 //  Xpense
 //
 //  Created by Paul Schmiedmayer on 3/20/20.
-//  Copyright © 2020 TUM LS1. All rights reserved.
+//  Copyright © 2023 TUM LS1. All rights reserved.
 //
 
 import SwiftUI
@@ -15,7 +15,7 @@ import XpenseModel
 /// A view that enables a user to select a location on a map view
 struct EditLocationView: View {
     /// The presentation mode used to dismiss the view once the user cancels the view or saves the selection
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) private var dismiss
     
     /// The coordinate that is selected by the user
     @Binding var coordinate: CLLocationCoordinate2D?
@@ -53,13 +53,13 @@ struct EditLocationView: View {
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction) {
                         Button("Cancel") {
-                            presentationMode.wrappedValue.dismiss()
+                            dismiss()
                         }
                     }
                     ToolbarItem(placement: .confirmationAction) {
                         Button("Save") {
                             coordinate = coordinateRegion.center
-                            presentationMode.wrappedValue.dismiss()
+                            dismiss()
                         }
                     }
                 }

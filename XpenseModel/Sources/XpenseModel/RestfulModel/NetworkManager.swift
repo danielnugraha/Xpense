@@ -4,7 +4,7 @@
 //
 //  Created by Paul Schmiedmayer on 10/11/19.
 //  Rewritten by Daniel Nugraha on 08.03.23.
-//  Copyright © 2020 TUM LS1. All rights reserved.
+//  Copyright © 2023 TUM LS1. All rights reserved.
 //
 
 import Foundation

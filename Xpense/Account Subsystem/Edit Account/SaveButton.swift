@@ -4,7 +4,7 @@
 //
 //  Created by Paul Schmiedmayer on 9/26/20.
 //  Rewritten by Daniel Nugraha on 9/3/23.
-//  Copyright © 2020 TUM LS1. All rights reserved.
+//  Copyright © 2023 TUM LS1. All rights reserved.
 //
 
 import SwiftUI
@@ -28,7 +28,7 @@ protocol SaveButtonViewModel: ObservableObject {
 /// Button that is used to save the edits made to a model conforming to `SaveButtonViewModel`
 struct SaveButton<M: SaveButtonViewModel>: View {
     /// Indicates whether this `EditAccount` view is currently presented
-    @Environment(\.presentationMode) private var presentationMode
+    @Environment(\.dismiss) private var dismiss
     
     /// The `SaveButtonViewModel` that manages the content of the view
     @ObservedObject var viewModel: M
@@ -48,7 +48,7 @@ struct SaveButton<M: SaveButtonViewModel>: View {
         additionalAction?()
         Task.init {
             await viewModel.save()
-            presentationMode.wrappedValue.dismiss()
+            dismiss()
         }
     }
 }

@@ -3,7 +3,7 @@
 //  Xpense
 //
 //  Created by Paul Schmiedmayer on 3/22/20.
-//  Copyright © 2020 TUM LS1. All rights reserved.
+//  Copyright © 2023 TUM LS1. All rights reserved.
 //
 
 import SwiftUI

@@ -4,7 +4,7 @@
 //
 //  Created by Paul Schmiedmayer on 10/11/19.
 //  Rewritten by Daniel Nugraha on 11/03/23.
-//  Copyright © 2020 TUM LS1. All rights reserved.
+//  Copyright © 2023 TUM LS1. All rights reserved.
 //
 
 import SwiftUI
@@ -19,8 +19,6 @@ struct EditTransaction: View {
         case amount
         case description
     }
-    /// Indicates whether this `EditAccount` view is currently presented
-    @Environment(\.presentationMode) private var presentationMode
     /// The `EditTransactionViewModel` that manages the content of the view
     @ObservedObject private var viewModel: EditTransactionViewModel
     @FocusState private var focusedField: Field?
@@ -64,7 +62,7 @@ struct EditTransaction: View {
                 HStack {
                     HStack(alignment: .center, spacing: 2) {
                         Text("\(viewModel.classification.sign)")
-                        TextField("Amount", value: $viewModel.amount, format: .currency(code: "EUR"))
+                        TextField("Amount", value: $viewModel.amount, format: .currency(code: "USD"))
                             .keyboardType(.decimalPad) // Show only numbers and a dot
                             .focused($focusedField, equals: .amount)
                     }

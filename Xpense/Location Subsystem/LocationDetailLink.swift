@@ -3,7 +3,7 @@
 //  Xpense
 //
 //  Created by Paul Schmiedmayer on 10/11/19.
-//  Copyright © 2020 TUM LS1. All rights reserved.
+//  Copyright © 2023 TUM LS1. All rights reserved.
 //
 
 import SwiftUI
@@ -19,6 +19,8 @@ struct LocationDetailLink: View {
     var coordinate: CLLocationCoordinate2D
     /// The navigationbar title that should be displayed in the detail view
     var navigationTitle: String
+    
+    //@Binding var path: NavigationPath
     
     
     var body: some View {
