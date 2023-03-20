@@ -76,7 +76,7 @@ public class RestfulModel: Model {
         do {
             try await sendLoginRequest(name, password: password)
         } catch {
-            self.setServerError(to: .loginFailed)
+            await setServerError(to: .loginFailed)
         }
         await refresh()
     }
