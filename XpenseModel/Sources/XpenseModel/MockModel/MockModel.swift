@@ -87,4 +87,12 @@ public class MockModel: Model {
         
         self.init(user: user, accounts: accounts, transactions: transactions)
     }
+
+    public override func refreshAccounts() async throws -> [Account] {
+        accounts
+    }
+
+    public override func refreshTransactions() async throws -> [Transaction] {
+        transactions
+    }
 }

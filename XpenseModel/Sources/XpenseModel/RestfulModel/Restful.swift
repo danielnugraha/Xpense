@@ -35,7 +35,11 @@ protocol Restful: Codable & Identifiable & Comparable {
 // MARK: Restful
 extension Restful where Self.ID == UUID? {
     static func get() async throws -> [Self] {
-        try await NetworkManager.getElements(on: Self.route)
+        do {
+            return try await NetworkManager.getElements(on: Self.route)
+        } catch {
+            throw XpenseServiceError.loadingFailed(Self.self)
+        }
     }
     
     
