@@ -54,11 +54,52 @@ public class Model: ObservableObject {
     public func transaction(_ id: Transaction.ID?) -> Transaction? {
         transactions.first(where: { $0.id == id })
     }
+
+    /// Refresh `Accounts` from the backend.
+    ///
+    /// Note: This method must be overwritten by the concrete instantiation of the Model.
+    /// - Returns: Returns the fetched list of accounts.
+    /// - Throws: Throws an `XpenseServiceError` on any failure to fetch the latest state.
+    public func refreshAccounts() async {
+        do {
+            let accounts = try await loadAccounts()
+            await MainActor.run {
+                self.accounts = accounts
+            }
+        } catch {
+            await setServerError(to: .loadingFailed(Account.self))
+        }
+    }
+
+    func loadAccounts() async throws -> [Account] {
+        accounts
+    }
+
+
+    /// Refresh `Transaction` from the backend.
+    ///
+    /// Note: This method must be overwritten by the concrete instantiation of the Model.
+    /// - Returns: Returns the fetched list of transactions.
+    /// - Throws: Throws an `XpenseServiceError` on any failure to fetch the latest state.
+    public func refreshTransactions() async {
+        do {
+            let transactions = try await loadTransactions()
+            await MainActor.run {
+                self.transactions = transactions
+            }
+        } catch {
+            await setServerError(to: .loadingFailed(Transaction.self))
+        }
+    }
+
+    func loadTransactions() async throws -> [Transaction] {
+        fatalError("Stub not implemented!")
+    }
     
     /// Save a specified `Account`.
     /// - Parameters:
     ///    - account: The `Account` you wish to save.
-    /// - Returns: A `Future` that completes once the resonse from the server has arrived and has been processeds
+    /// - Returns: A `Future` that completes once the response from the server has arrived and has been processeds
     public func save(_ account: Account) async {
         try? await Task.sleep(nanoseconds: 500_000_000)
         DispatchQueue.main.async {
@@ -76,7 +117,7 @@ public class Model: ObservableObject {
     /// Save a specified `Transaction`.
     /// - Parameters:
     ///    - transaction: The `Transaction` you wish to save
-    /// - Returns: A `Future` that completes once the resonse from the server has arrived and has been processed
+    /// - Returns: A `Future` that completes once the response from the server has arrived and has been processed
     public func save(_ transaction: Transaction) async {
         try? await Task.sleep(nanoseconds: 500_000_000)
         DispatchQueue.main.async {
@@ -93,7 +134,7 @@ public class Model: ObservableObject {
     /// Delete a specified account and all transactions associated with the account.
     /// - Parameters:
     ///    - id: The id of the `Account` that you with to delete
-    /// - Returns: A `Future` that completes once the resonse from the server has arrived and has been processed
+    /// - Returns: A `Future` that completes once the response from the server has arrived and has been processed
     public func delete(account id: Account.ID) async {
         try? await Task.sleep(nanoseconds: 500_000_000)
         DispatchQueue.main.async {
@@ -104,7 +145,7 @@ public class Model: ObservableObject {
     /// Delete a specified transaction.
     /// - Parameters:
     ///    - id: The id of the `Transaction` that you with to delete
-    /// - Returns: A `Future` that completes once the resonse from the server has arrived and has been processed
+    /// - Returns: A `Future` that completes once the response from the server has arrived and has been processed
     public func delete(transaction id: Transaction.ID) async {
         try? await Task.sleep(nanoseconds: 500_000_000)
         DispatchQueue.main.async {
@@ -116,7 +157,7 @@ public class Model: ObservableObject {
     /// - Parameters:
     ///   - name: The name of the `User` that is used to authenticate the `User` in the future
     ///   - password: The password of the `User` that is used to authenticate the `User` in the future
-    /// - Returns: A `Future` that completes once the resonse from the server has arrived and has been processed
+    /// - Returns: A `Future` that completes once the response from the server has arrived and has been processed
     public func signUp(_ name: String, password: String) async {
         try? await Task.sleep(nanoseconds: 500_000_000)
         DispatchQueue.main.async {
@@ -128,11 +169,34 @@ public class Model: ObservableObject {
     /// - Parameters:
     ///   - name: The name of the `User` that is used to authenticate the `User`
     ///   - password: The password of the `User` that is used to authenticate the `User`
-    /// - Returns: A `Future` that completes once the resonse from the server has arrived and has been processed
+    /// - Returns: A `Future` that completes once the response from the server has arrived and has been processed
     public func login(_ name: String, password: String) async {
         try? await Task.sleep(nanoseconds: 500_000_000)
         DispatchQueue.main.async {
             self.user = User(name: name, token: "SuperSecretToken")
+        }
+    }
+
+    /// Sets the `serverError` of the `Model` and returns the error to be processed by `Publishers`
+    /// - Parameter error: The `XpenseServiceError` that should be set
+    /// - Returns: The `XpenseServiceError` passed in as an argument
+    @MainActor
+    func setServerError(to error: XpenseServiceError) {
+        self.serverError = error
+    }
+
+    /// Refreshes the `Accounts` and `Transaction` in the `Model`
+    public func refresh() async {
+        do {
+            let accounts = try await loadAccounts()
+            let transactions = try await loadTransactions()
+
+            await MainActor.run {
+                self.accounts = accounts
+                self.transactions = transactions
+            }
+        } catch {
+            await setServerError(to: error as! XpenseServiceError)
         }
     }
     
