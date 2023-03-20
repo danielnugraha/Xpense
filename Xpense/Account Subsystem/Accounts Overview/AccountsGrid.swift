@@ -3,7 +3,8 @@
 //  Xpense
 //
 //  Created by Paul Schmiedmayer on 9/25/20.
-//  Copyright © 2020 TUM LS1. All rights reserved.
+//  Rewritten by Daniel Nugraha on 20/03/23.
+//  Copyright © 2023 TUM LS1. All rights reserved.
 //
 
 import SwiftUI
@@ -15,8 +16,7 @@ struct AccountsGrid: View {
     /// The `Model` the   `Account`s shall be read from
     @EnvironmentObject private var model: Model
     
-    /// Indicates whether the add account sheet is supposed to be presented
-    @State private var selectedAccount: Account.ID = nil
+    @Binding var path: [ContentLink]
     
     /// The columns of the `LazyVGrid` that enable a dynamic layout for differet device sizes
     let columns = [
@@ -30,7 +30,7 @@ struct AccountsGrid: View {
                 ZStack {
                     AccountBackground()
                         .frame(height: 140)
-                    Button(action: { model.path.append(account) }) {
+                    Button(action: { path.append(.accountLink(id: account.id)) }) {
                         VStack(spacing: 4) {
                             Text(account.name)
                                 .font(.system(size: 24, weight: .medium))
@@ -50,14 +50,15 @@ struct AccountsGrid: View {
 
 // MARK: - AccountsGrid Previews
 struct AccountsGrid_Previews: PreviewProvider {
+    @State static var path: [ContentLink] = []
     static var previews: some View {
         Group {
             NavigationStack {
-                AccountsGrid()
+                AccountsGrid(path: $path)
                     .navigationTitle("Accounts")
             }
             NavigationStack {
-                AccountsGrid()
+                AccountsGrid(path: $path)
                     .navigationTitle("Accounts")
                     .preferredColorScheme(.dark)
             }

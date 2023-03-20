@@ -3,7 +3,7 @@
 //  XpenseModel
 //
 //  Created by Paul Schmiedmayer on 4/9/20.
-//  Copyright © 2020 TUM LS1. All rights reserved.
+//  Copyright © 2023 TUM LS1. All rights reserved.
 //
 
 import Foundation
@@ -22,9 +22,6 @@ extension RestfulModel {
         try await Element.delete(id: id)
         DispatchQueue.main.async {
             self[keyPath: keyPath].removeAll(where: { $0.id == id })
-            if !self.path.isEmpty {
-                self.path.removeLast()
-            }
         }
     }
 }

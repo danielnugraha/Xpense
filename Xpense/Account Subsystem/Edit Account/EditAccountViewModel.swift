@@ -4,7 +4,7 @@
 //
 //  Created by Paul Schmiedmayer on 9/26/20.
 //  Rewritten by Daniel Nugraha on 09/03/23.
-//  Copyright © 2020 TUM LS1. All rights reserved.
+//  Copyright © 2023 TUM LS1. All rights reserved.
 //
 
 import Foundation
@@ -54,7 +54,6 @@ class EditAccountViewModel: ObservableObject {
             self.name = ""
             return
         }
-        
         self.name = account.name
     }
     

@@ -4,7 +4,7 @@
 //
 //  Created by Paul Schmiedmayer on 10/11/19.
 //  Rewritten by Daniel Nugraha on 11/03/23.
-//  Copyright © 2020 TUM LS1. All rights reserved.
+//  Copyright © 2023 TUM LS1. All rights reserved.
 //
 
 import SwiftUI
@@ -18,8 +18,10 @@ struct AccountDetailLink: View {
     @EnvironmentObject private var model: Model
     /// Indicate whether to disable the navigation link
     var disableLink: Bool {
-        model.path.count >= 2
+        path.count >= 2
     }
+    
+    @Binding var path: [ContentLink]
     
     /// The `Account`'s identifier that should be used to display the corresponding `Account`
     ///
@@ -33,7 +35,7 @@ struct AccountDetailLink: View {
     
     var body: some View {
         model.account(id).map { account in
-            Button(action: { model.path.append(account) }) {
+            Button(action: { path.append(.accountLink(id: account.id)) }) {
                 HStack {
                     Text(account.name)
                     Spacer()
@@ -56,11 +58,12 @@ struct AccountDetailLink: View {
 struct AccountDetailLink_Previews: PreviewProvider {
     private static let model: Model = MockModel()
     private static var accountId = model.accounts[0].id
+    @State static var path: [ContentLink] = []
     
     
     static var previews: some View {
         ForEach(ContentSizeCategory.allCases, id: \.hashValue) { contentSizeCategory in
-            AccountDetailLink(id: accountId)
+            AccountDetailLink(path: $path, id: accountId)
                 .environment(\.sizeCategory, contentSizeCategory)
         }.environmentObject(model)
             .background(Color("BackgroundColor"))

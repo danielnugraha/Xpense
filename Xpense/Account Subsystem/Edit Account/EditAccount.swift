@@ -4,7 +4,7 @@
 //
 //  Created by Paul Schmiedmayer on 10/11/19.
 //  Rewritten by Daniel Nugraha 9/3/23.
-//  Copyright © 2020 TUM LS1. All rights reserved.
+//  Copyright © 2023 TUM LS1. All rights reserved.
 //
 
 import SwiftUI
@@ -17,6 +17,7 @@ struct EditAccount: View {
     
     /// The `EditAccountViewModel` that manages the content of the view
     @ObservedObject private var viewModel: EditAccountViewModel
+    @Binding private var path: [ContentLink]
     
     
     var body: some View {
@@ -26,27 +27,41 @@ struct EditAccount: View {
                     TextField("Account Name", text: $viewModel.name)
                 }
                 if viewModel.id != nil {
-                    DeleteButton(viewModel: viewModel)
+                    DeleteButton(viewModel: viewModel) {
+                        let deletedInPath = self.path.contains { contentLink in
+                            switch contentLink {
+                            case .accountLink(let id):
+                                return id == viewModel.id
+                            default:
+                                return false
+                            }
+                        }
+                        if deletedInPath {
+                            self.path = []
+                        }
+                    }
                 }
-            }.task {
+            }
+            .task {
                 viewModel.updateStates()
             }
-                .navigationBarTitle(viewModel.id == nil ? "Add Account" : "Edit Account", displayMode: .inline)
-                .toolbar {
-                    SaveButton(viewModel: viewModel)
-                        .alert(isPresented: viewModel.presentingErrorMessage) {
-                            Alert(title: Text("Error"),
-                                  message: Text(viewModel.errorMessage ?? ""))
-                        }
-                }
+            .navigationBarTitle(viewModel.id == nil ? "Add Account" : "Edit Account", displayMode: .inline)
+            .toolbar {
+                SaveButton(viewModel: viewModel)
+                    .alert(isPresented: viewModel.presentingErrorMessage) {
+                        Alert(title: Text("Error"),
+                              message: Text(viewModel.errorMessage ?? ""))
+                    }
+            }
         }
     }
     
     
     /// - Parameter model: The `Model` that is used to manage the `Account`s of the Xpense Application
     /// - Parameter id: The `Account`'s identifier that should be edited
-    init(_ model: Model, id: XpenseModel.Transaction.ID) {
-        viewModel = EditAccountViewModel(model, id: id)
+    init(_ model: Model, path: Binding<[ContentLink]>, id: XpenseModel.Account.ID) {
+        self.viewModel = EditAccountViewModel(model, id: id)
+        self._path = path
     }
 }
 
@@ -55,10 +70,12 @@ struct EditAccount: View {
 /// A button that deletes an `Account` used in the `EditAccount` view
 private struct DeleteButton: View {
     /// Indicates whether this `EditAccount` view is currently presented
-    @Environment(\.presentationMode) private var presentationMode
+    @Environment(\.dismiss) private var dismiss
     
     /// The `EditAccountViewModel` that manages the content of the view
     @ObservedObject var viewModel: EditAccountViewModel
+    
+    var additionalAction: (() -> Void)?
     
     
     var body: some View {
@@ -89,7 +106,8 @@ private struct DeleteButton: View {
     private func delete() {
         Task.init {
             await viewModel.delete()
-            presentationMode.wrappedValue.dismiss()
+            additionalAction?()
+            dismiss()
         }
     }
 }
@@ -98,10 +116,10 @@ private struct DeleteButton: View {
 // MARK: - EditAccount Previews
 struct EditAccount_Previews: PreviewProvider {
     private static let model: Model = MockModel()
-    
+    @State private static var path: [ContentLink] = []
     
     static var previews: some View {
-        EditAccount(model, id: model.accounts[0].id)
+        EditAccount(model, path: $path, id: model.accounts[0].id)
             .environmentObject(model)
     }
 }
