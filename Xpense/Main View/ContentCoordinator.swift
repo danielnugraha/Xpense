@@ -32,9 +32,7 @@ struct ContentCoordinator<Content: View>: View {
     }
     
     @StateObject var contentState = ContentState()
-    /// Indicates whether the alert asking to confirm the logout process should be displayed
-    @State private var presentUserAlert = false
-    
+
     init(content: @escaping (Binding<[ContentLink]>) -> Content, contentType: ContentLink) {
         self.content = content
         self.contentType = contentType
@@ -46,14 +44,11 @@ struct ContentCoordinator<Content: View>: View {
                 .navigationTitle(navigationTitle)
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction) {
-                        UserButton(presentUserAlert: $presentUserAlert)
+                        UserButton()
                     }
                     ToolbarItem(placement: .primaryAction) {
                         addButton
                     }
-                }
-                .alert(isPresented: $presentUserAlert) {
-                    UserButton.createLogoutAlert(model)
                 }
                 .sheet(item: $contentState.presentedItem, content: sheetContent)
                 .navigationDestination(for: ContentLink.self) { contentLink in

@@ -17,22 +17,19 @@ struct UserButton: View {
     @EnvironmentObject private var model: Model
     
     /// Indicates whether the alert asking to confirm the logout process should be displayed
-    @Binding var presentUserAlert: Bool
-    
+    @State private var presentUserAlert: Bool = false
     
     var body: some View {
         Button(action: { self.presentUserAlert = true }) {
             Image(systemName: "person.circle")
         }
             .alert(isPresented: $presentUserAlert) {
-                UserButton.createLogoutAlert(model)
+                logoutAlert
             }
     }
     
-    
     /// Creates the alert asking to confirm the logout process
-    /// - Parameter model: The model used for the logout process
-    static func createLogoutAlert(_ model: Model) -> Alert {
+    private var logoutAlert: Alert {
         let alertText: String = "You are logged in as \"\(model.user?.name ?? "")\""
         return Alert(title: Text("User Overview"),
                      message: Text(alertText),
@@ -44,10 +41,7 @@ struct UserButton: View {
 
 // MARK: - UserButton Previews
 struct UserButton_Previews: PreviewProvider {
-    @State private static var presentUserAlert = false
-    
-    
     static var previews: some View {
-        UserButton(presentUserAlert: $presentUserAlert)
+        UserButton()
     }
 }
