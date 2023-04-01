@@ -31,7 +31,7 @@ struct ContentCoordinator<Content: View>: View {
         }
     }
     
-    @ObservedObject var contentState = ContentState()
+    @StateObject var contentState = ContentState()
     /// Indicates whether the alert asking to confirm the logout process should be displayed
     @State private var presentUserAlert = false
     

@@ -41,7 +41,7 @@ struct AccountView: View {
 struct AccountView_Previews: PreviewProvider {
     private static let model: Model = MockModel()
     
-    @State static var path = ContentState()
+    @StateObject static var path = ContentState()
     static var previews: some View {
         NavigationStack {
             AccountView(contentState: path, id: model.accounts[0].id)

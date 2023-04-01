@@ -20,7 +20,7 @@ struct EditTransaction: View {
         case description
     }
     /// The `EditTransactionViewModel` that manages the content of the view
-    @ObservedObject private var viewModel: EditTransactionViewModel
+    @StateObject private var viewModel: EditTransactionViewModel
     @FocusState private var focusedField: Field?
     
     /// The title in the navigation bar for this view
@@ -31,7 +31,7 @@ struct EditTransaction: View {
     /// - Parameter model: The `Model` that is used to manage the `Transaction`s of the Xpense Application
     /// - Parameter id: The `Transaction`'s identifier that should be edited
     init(_ model: Model, id: XpenseModel.Transaction.ID) {
-        viewModel = EditTransactionViewModel(model, id: id)
+        _viewModel = StateObject(wrappedValue: EditTransactionViewModel(model, id: id))
     }
     
     var body: some View {

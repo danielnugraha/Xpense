@@ -16,7 +16,7 @@ import XpenseModel
 struct EditAccount: View {
     
     /// The `EditAccountViewModel` that manages the content of the view
-    @ObservedObject private var viewModel: EditAccountViewModel
+    @StateObject private var viewModel: EditAccountViewModel
     @Binding private var path: [ContentLink]
     
     
@@ -60,7 +60,7 @@ struct EditAccount: View {
     /// - Parameter model: The `Model` that is used to manage the `Account`s of the Xpense Application
     /// - Parameter id: The `Account`'s identifier that should be edited
     init(_ model: Model, path: Binding<[ContentLink]>, id: XpenseModel.Account.ID) {
-        self.viewModel = EditAccountViewModel(model, id: id)
+        self._viewModel = StateObject(wrappedValue: EditAccountViewModel(model, id: id))
         self._path = path
     }
 }
