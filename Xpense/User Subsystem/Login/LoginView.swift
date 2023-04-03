@@ -14,7 +14,7 @@ import XpenseModel
 /// The view that displays login screen of the Xpense App
 struct LoginView: View {
     /// The `LoginViewModel` that manages the content of the login screen
-    @ObservedObject var viewModel: LoginViewModel
+    @StateObject var viewModel: LoginViewModel
     
     /// Used to indicate if the text input views and the login button should be shown
     @State var showViews = false
@@ -43,7 +43,7 @@ struct LoginView: View {
     
     /// - Parameter model: The `Model` that is used to manage the `User` of the Xpense Application
     init(_ model: Model) {
-        viewModel = LoginViewModel(model)
+        _viewModel = StateObject(wrappedValue: LoginViewModel(model))
     }
     
     

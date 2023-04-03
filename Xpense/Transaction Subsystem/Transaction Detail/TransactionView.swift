@@ -45,7 +45,7 @@ struct TransactionView: View {
 // MARK: - TransactionView Previews
 struct TransactionView_Previews: PreviewProvider {
     private static let mock: Model = MockModel()
-    @State static var path = ContentState()
+    @StateObject static var path = ContentState()
     
     static var previews: some View {
         NavigationStack {
