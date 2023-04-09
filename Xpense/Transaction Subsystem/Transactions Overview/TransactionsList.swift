@@ -47,7 +47,7 @@ struct TransactionsList: View {
         indexSet
             .map { transactions[$0].id }
             .forEach { transaction in
-                Task.init {
+                Task {
                     await self.model.delete(transaction: transaction)
                     let deletedInPath = self.path.contains { contentLink in
                         switch contentLink {

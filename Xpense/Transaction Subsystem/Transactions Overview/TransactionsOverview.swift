@@ -13,8 +13,6 @@ import XpenseModel
 // MARK: - TransactionsOverview
 /// View displaying all `Transactions` regardless of the account they belong to
 struct TransactionsOverview: View {
-    
-    
     var body: some View {
         ContentCoordinator(content: content, contentType: .transactionLink())
         .tabItem {

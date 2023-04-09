@@ -77,7 +77,6 @@ struct ContentCoordinator<Content: View>: View {
             EditAccount(self.model, path: $contentState.path, id: id)
         }
     }
-    
 }
 
 enum ContentLink: Hashable, Identifiable {

@@ -14,7 +14,6 @@ import XpenseModel
 // MARK: - EditAccount
 /// A view that enables the user to edit an `Account`
 struct EditAccount: View {
-    
     /// The `EditAccountViewModel` that manages the content of the view
     @StateObject private var viewModel: EditAccountViewModel
     @Binding private var path: [ContentLink]
@@ -96,7 +95,9 @@ private struct DeleteButton: View {
     /// Alter that is used to verify that the user really wants to delete the `Account`
     private var deleteAlert: Alert {
         Alert(title: Text("Delete Account"),
-              message: Text("If you delete the Account you will also delete all Transactions associated with the Account"),
+              message: Text(
+                "If you delete the Account you will also delete all Transactions associated with the Account"
+              ),
               primaryButton: .destructive(Text("Delete"), action: delete),
               secondaryButton: .cancel())
     }
@@ -104,7 +105,7 @@ private struct DeleteButton: View {
     
     /// Uses the `EditAccountViewModel` to delete the account
     private func delete() {
-        Task.init {
+        Task {
             await viewModel.delete()
             additionalAction?()
             dismiss()

@@ -73,7 +73,6 @@ enum NetworkManager {
     /// - Returns: An `AnyPublisher` that contains the `Element` from the server or or an `Error` in the case of an error
     static func getElement<Element: Decodable>(on route: URL,
                                                authorization: String? = authorization) async throws -> Element {
-        
         try await sendRequest(urlRequest("GET", url: route, authorization: authorization))
     }
     
@@ -94,8 +93,8 @@ enum NetworkManager {
     ///     - authorization: The `String` that should written in the `Authorization` header field
     /// - Returns: An `AnyPublisher` that contains the created `Element` from the server or an `Error` in the case of an error
     static func postElement<Element: Codable>(_ element: Element,
-                                        authorization: String? = authorization,
-                                        on route: URL) async throws -> Element {
+                                              authorization: String? = authorization,
+                                              on route: URL) async throws -> Element {
         try await sendRequest(
             urlRequest("POST",
                        url: route,
@@ -112,8 +111,8 @@ enum NetworkManager {
     ///     - authorization: The `String` that should written in the `Authorization` header field
     /// - Returns: An `AnyPublisher` that contains the updated `Element` from the server or an `Error` in the case of an error
     static func putElement<Element: Codable>(_ element: Element,
-                                       authorization: String? = authorization,
-                                       on route: URL) async throws -> Element {
+                                             authorization: String? = authorization,
+                                             on route: URL) async throws -> Element {
         try await sendRequest(
             urlRequest("PUT",
                        url: route,
@@ -130,7 +129,6 @@ enum NetworkManager {
     /// - Returns: An `AnyPublisher` that contains indicates of the deletion was successful
     static func delete(at route: URL,
                        authorization: String? = authorization) async throws {
-        
         let (_, response) = try await URLSession.shared.data(for:
             urlRequest("DELETE", url: route, authorization: authorization)
         )
@@ -141,6 +139,5 @@ enum NetworkManager {
         else {
             throw URLError(.cannotRemoveFile)
         }
-        
     }
 }

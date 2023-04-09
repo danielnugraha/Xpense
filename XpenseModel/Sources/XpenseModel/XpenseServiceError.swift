@@ -27,6 +27,7 @@ public enum XpenseServiceError: Error {
     
     
     public var localizedDescription: String {
+        // swiftlint:disable line_length
         switch self {
         case .loginFailed:
             return """
@@ -64,5 +65,6 @@ public enum XpenseServiceError: Error {
                 The Xpense developer did a bad job.
             """
         }
+        // swiftlint:enable line_length
     }
 }

@@ -17,7 +17,7 @@ struct UserButton: View {
     @EnvironmentObject private var model: Model
     
     /// Indicates whether the alert asking to confirm the logout process should be displayed
-    @State private var presentUserAlert: Bool = false
+    @State private var presentUserAlert = false
     
     var body: some View {
         Button(action: { self.presentUserAlert = true }) {

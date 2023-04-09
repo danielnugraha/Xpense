@@ -22,7 +22,7 @@ public class RestfulModel: Model {
         return baseURL
     }()
     
-    public override func save(_ account: Account) async {
+    override public func save(_ account: Account) async {
         do {
             try await saveElement(account, to: \.accounts)
         } catch {
@@ -33,7 +33,7 @@ public class RestfulModel: Model {
         await refresh()
     }
     
-    public override func save(_ transaction: Transaction) async {
+    override public func save(_ transaction: Transaction) async {
         do {
             try await saveElement(transaction, to: \.transactions)
         } catch {
@@ -44,7 +44,7 @@ public class RestfulModel: Model {
         await refresh()
     }
     
-    public override func delete(account id: Account.ID) async {
+    override public func delete(account id: Account.ID) async {
         do {
             try await delete(id, in: \.accounts)
         } catch {
@@ -55,7 +55,7 @@ public class RestfulModel: Model {
         await refresh()
     }
     
-    public override func delete(transaction id: Transaction.ID) async {
+    override public func delete(transaction id: Transaction.ID) async {
         do {
             try await delete(id, in: \.transactions)
         } catch {
@@ -66,7 +66,7 @@ public class RestfulModel: Model {
         await refresh()
     }
     
-    public override func signUp(_ name: String, password: String) async {
+    override public func signUp(_ name: String, password: String) async {
         do {
             try await sendSignUpRequest(name, password: password)
         } catch {
@@ -81,7 +81,7 @@ public class RestfulModel: Model {
         await refresh()
     }
 
-    public override func login(_ name: String, password: String) async {
+    override public func login(_ name: String, password: String) async {
         do {
             try await sendLoginRequest(name, password: password)
         } catch {

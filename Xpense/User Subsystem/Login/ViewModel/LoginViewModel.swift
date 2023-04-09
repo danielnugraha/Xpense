@@ -71,7 +71,7 @@ class LoginViewModel: ObservableObject {
     func primaryAction() {
         loadingInProcess = true
         
-        Task.init {
+        Task {
             switch state {
             case .login:
                 await model?.login(username, password: password)

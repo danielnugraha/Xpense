@@ -46,7 +46,7 @@ struct SaveButton<M: SaveButtonViewModel>: View {
     /// Saves the element using the view model
     private func save() {
         additionalAction?()
-        Task.init {
+        Task {
             await viewModel.save()
             dismiss()
         }

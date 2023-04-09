@@ -34,5 +34,4 @@ struct AuthenticationController: RouteCollection {
         try await token.save(on: req.db)
         return UserToken.Output(name: user.name, token: token.value)
     }
-    
 }
