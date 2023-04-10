@@ -30,9 +30,9 @@ struct TransactionController: RouteCollection {
             .query(on: req.db)
             .with(\.$account)
             .join(parent: \.$account)
-            .filter(Account.self, \Account.$user.$id == user.id!)
+            .filter(Account.self, \Account.$user.$id == user.id)
             .all()
-            .map{$0.toInputOutput()}
+            .map { $0.toInputOutput() }
     }
     
     func create(req: Request) async throws -> Transaction.InputOutput {

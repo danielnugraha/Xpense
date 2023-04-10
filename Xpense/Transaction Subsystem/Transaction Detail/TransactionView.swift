@@ -27,8 +27,6 @@ struct TransactionView: View {
     var id: XpenseModel.Transaction.ID
     
     
-    
-    
     var body: some View {
         TransactionSummary(id: id, path: $contentState.path)
             .toolbar {

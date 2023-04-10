@@ -13,7 +13,7 @@ import Vapor
 func routes(_ app: Application) throws {
     let routes = app.grouped("v1")
     
-    routes.get { req async throws -> String in
+    routes.get { _ async throws -> String in
         "Hello world"
     }
     

@@ -38,9 +38,10 @@ extension RestfulModel {
         }
         
         let userToken: User = try await NetworkManager.sendRequest(
-            NetworkManager.urlRequest("POST",
-                       url: loginRoute,
-                       authorization: "Basic \(basicAuthToken)"
+            NetworkManager.urlRequest(
+                "POST",
+                url: loginRoute,
+                authorization: "Basic \(basicAuthToken)"
             )
         )
         if let bearerToken = userToken.bearerToken {

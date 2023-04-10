@@ -28,20 +28,7 @@ struct EditLocationView: View {
         NavigationStack {
             ZStack {
                 Map(coordinateRegion: $coordinateRegion, showsUserLocation: true)
-                ZStack {
-                    Image(systemName: "circle.fill")
-                        .foregroundColor(.white)
-                    Image(systemName: "arrowtriangle.down.fill")
-                        .scaleEffect(0.25)
-                        .offset(x: 0, y: 17.0)
-                        .shadow(color: .black, radius: 4)
-                    Image(systemName: "mappin.circle.fill")
-                }
-                    .alignmentGuide(VerticalAlignment.center) { dimension in
-                        dimension[.bottom]
-                    }
-                    .font(.largeTitle)
-                    .foregroundColor(.red)
+                mapPin
             }
                 .navigationBarTitleDisplayMode(.inline)
                 .task {
@@ -64,6 +51,23 @@ struct EditLocationView: View {
                     }
                 }
         }
+    }
+    
+    private var mapPin: some View {
+        ZStack {
+            Image(systemName: "circle.fill")
+                .foregroundColor(.white)
+            Image(systemName: "arrowtriangle.down.fill")
+                .scaleEffect(0.25)
+                .offset(x: 0, y: 17.0)
+                .shadow(color: .black, radius: 4)
+            Image(systemName: "mappin.circle.fill")
+        }
+            .alignmentGuide(VerticalAlignment.center) { dimension in
+                dimension[.bottom]
+            }
+            .font(.largeTitle)
+            .foregroundColor(.red)
     }
 }
 

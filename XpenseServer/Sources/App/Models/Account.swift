@@ -54,7 +54,7 @@ extension Account {
 }
 
 extension Account {
-    struct InputOutput: Content {
+    public struct InputOutput: Content {
         /// The stable identity of the entity associated with self
         public var id: UUID?
         /// The name of the `Account`

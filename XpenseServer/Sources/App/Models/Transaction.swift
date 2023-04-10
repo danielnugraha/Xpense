@@ -43,7 +43,13 @@ final class Transaction: Model, Content {
     
     init() { }
     
-    init(id: UUID? = UUID(), amount: Int, description: String, date: Date, latitude: Double?, longitude: Double?, accountId: Account.IDValue) {
+    init(id: UUID? = UUID(),
+         amount: Int,
+         description: String,
+         date: Date,
+         latitude: Double?,
+         longitude: Double?,
+         accountId: Account.IDValue) {
         self.id = id
         self.amount = amount
         self.description = description
@@ -75,7 +81,7 @@ extension Transaction {
 }
 
 extension Transaction {
-    struct InputOutput: Content {
+    public struct InputOutput: Content {
         /// The stable identity of the entity associated with self
         public var id: UUID?
         /// The amount of money this transaction is worth in `Cent`s
@@ -90,7 +96,15 @@ extension Transaction {
         public var account: UUID
         
         func toTransaction() -> Transaction {
-            Transaction(id: id, amount: amount, description: description, date: date, latitude: location?.latitude, longitude: location?.longitude, accountId: account)
+            Transaction(
+                id: id,
+                amount: amount,
+                description: description,
+                date: date,
+                latitude: location?.latitude,
+                longitude: location?.longitude,
+                accountId: account
+            )
         }
     }
     
@@ -102,11 +116,21 @@ extension Transaction {
     }
     
     func toInputOutput() -> InputOutput {
+        // swiftlint:disable:next force_unwrapping
+        let id = account.id!
+        var location: Coordinate?
         if let latitude = latitude, let longitude = longitude {
-            return InputOutput(id: id, amount: amount, description: description, date: date, location: Coordinate(latitude: latitude, longitude: longitude), account: account.id!)
-        } else {
-            return InputOutput(id: id, amount: amount, description: description, date: date, account: account.id!)
+            location = Coordinate(latitude: latitude, longitude: longitude)
         }
+        
+        return InputOutput(
+            id: id,
+            amount: amount,
+            description: description,
+            date: date,
+            location: location,
+            account: id
+        )
     }
     
     func update(with newTransaction: InputOutput) {

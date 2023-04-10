@@ -29,7 +29,7 @@ struct AccountController: RouteCollection {
             .$accounts
             .query(on: req.db)
             .all()
-            .map{$0.toInputOutput()}
+            .map { $0.toInputOutput() }
     }
     
     func create(req: Request) async throws -> Account.InputOutput {

@@ -90,6 +90,7 @@ public class Model: ObservableObject {
         }
     }
 
+    // swiftlint:disable:next unavailable_function
     func loadTransactions() async throws -> [Transaction] {
         fatalError("Stub not implemented!")
     }
@@ -193,8 +194,10 @@ public class Model: ObservableObject {
                 self.accounts = accounts
                 self.transactions = transactions
             }
+        } catch let error as XpenseServiceError {
+            await setServerError(to: error)
         } catch {
-            await setServerError(to: error as! XpenseServiceError)
+            fatalError("Unhandled error: \(error.localizedDescription)")
         }
     }
     

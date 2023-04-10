@@ -32,8 +32,6 @@ final class User: Model, Content {
         self.name = name
         self.passwordHash = passwordHash
     }
-    
-
 }
 
 extension User {

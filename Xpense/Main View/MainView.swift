@@ -21,7 +21,7 @@ struct MainView: View {
         if model.user == nil {
             LoginView(model)
         } else {
-            TabView() {
+            TabView {
                 AccountsOverview()
                 TransactionsOverview()
             }
