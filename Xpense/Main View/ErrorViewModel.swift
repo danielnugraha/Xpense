@@ -9,7 +9,6 @@
 import SwiftUI
 import XpenseModel
 
-
 // MARK: ErrorViewModel
 /// The `ErrorViewModel` that is responsible for showing errors originating from the `Model`
 protocol ErrorViewModel: ObservableObject {
@@ -18,7 +17,6 @@ protocol ErrorViewModel: ObservableObject {
     /// A `Bool` `Binding` that indicates whether there is a error message that should be displayed
     var presentingErrorMessage: Binding<Bool> { get }
 }
-
 
 // MARK: Model + ErrorViewModel
 extension Model: ErrorViewModel {

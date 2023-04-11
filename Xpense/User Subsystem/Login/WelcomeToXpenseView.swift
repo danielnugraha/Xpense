@@ -8,7 +8,6 @@
 
 import SwiftUI
 
-
 // MARK: - WelcomeToXpenseView
 /// The view that displays the Xpense logo as well as a logo text
 struct WelcomeToXpenseView: View {
@@ -31,7 +30,6 @@ struct WelcomeToXpenseView: View {
         }
     }
 }
-
 
 // MARK: - WelcomeToXpenseView Previews
 struct WelcomeToXpenseView_Previews: PreviewProvider {

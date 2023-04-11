@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 extension Date {
     /// Create a new date a certain amount of minutes from now.
     /// - Parameters:

@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 // MARK: LoginState
 /// The possible states of the login view
 enum LoginState {
@@ -16,7 +15,6 @@ enum LoginState {
     case login
     /// The user can sign of in the Xpense application
     case signUp
-    
     
     /// The title of the primary action that is show on the login view
     var primaryActionTitle: String {
@@ -33,7 +31,6 @@ enum LoginState {
         case .signUp: return "Login Instead"
         }
     }
-    
     
     /// Toggles the state of the login view between all possible states
     mutating func toggle() {

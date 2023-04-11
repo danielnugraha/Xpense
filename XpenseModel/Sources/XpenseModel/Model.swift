@@ -73,7 +73,6 @@ public class Model: ObservableObject {
         accounts
     }
 
-
     /// Refresh `Transaction` from the backend.
     ///
     /// Note: This method must be overwritten by the concrete instantiation of the Model.

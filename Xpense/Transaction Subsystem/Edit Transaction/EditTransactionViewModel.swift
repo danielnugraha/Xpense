@@ -12,7 +12,6 @@ import CoreLocation
 import XpenseModel
 import SwiftUI
 
-
 // MARK: EditTransactionViewModel
 class EditTransactionViewModel: ObservableObject {
     /// The `Transaction`'s amount, the default amount is 0
@@ -39,7 +38,6 @@ class EditTransactionViewModel: ObservableObject {
     /// The `Model` that is used to interact with the `Transaction`s of the Xpense application
     private weak var model: Model?
     
-    
     /// The Accounts of the Xpense App loaded from the `Model`
     var accounts: [Account] {
         model?.accounts ?? []
@@ -49,7 +47,6 @@ class EditTransactionViewModel: ObservableObject {
         selectedAccount == nil || description.isEmpty || amount == nil || location == nil
     }
     
-    
     /// - Parameter model: The `Model` that is used to interact with the `Transaction`s of the Xpense application
     /// - Parameter id: The `Transaction`'s identifier that should be edited
     init(_ model: Model, id: XpenseModel.Transaction.ID) {
@@ -57,13 +54,11 @@ class EditTransactionViewModel: ObservableObject {
         self.id = id
     }
     
-    
     /// Updates the `EditTransaction`'s state like the name based on the `id`
     func updateStates() {
         guard let transaction = model?.transaction(id), !loaded else {
             return
         }
-        
         // Fill attributes from existing transaction
         self.amount = centToDouble(cent: abs(transaction.amount))
         self.classification = transaction.classification
@@ -113,7 +108,6 @@ class EditTransactionViewModel: ObservableObject {
     }
 }
 
-
 // MARK: EditTransactionViewModel + ErrorViewModel
 extension EditTransactionViewModel: ErrorViewModel {
     var errorMessage: String? {
@@ -128,7 +122,6 @@ extension EditTransactionViewModel: ErrorViewModel {
         })
     }
 }
-
 
 // MARK: EditTransactionViewModel + SaveButtonViewModel
 extension EditTransactionViewModel: SaveButtonViewModel {}

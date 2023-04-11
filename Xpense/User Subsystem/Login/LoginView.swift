@@ -9,7 +9,6 @@
 import SwiftUI
 import XpenseModel
 
-
 // MARK: - LoginView
 /// The view that displays login screen of the Xpense App
 struct LoginView: View {
@@ -18,7 +17,6 @@ struct LoginView: View {
     
     /// Used to indicate if the text input views and the login button should be shown
     @State var showViews = false
-    
     
     var body: some View {
         VStack(spacing: 0) {
@@ -40,12 +38,10 @@ struct LoginView: View {
         }
     }
     
-    
     /// - Parameter model: The `Model` that is used to manage the `User` of the Xpense Application
     init(_ model: Model) {
         _viewModel = StateObject(wrappedValue: LoginViewModel(model))
     }
-    
     
     /// Starts the appear `Animation` of the `LoginView`
     func animate() {
@@ -59,11 +55,9 @@ struct LoginView: View {
     }
 }
 
-
 // MARK: - LoginView Previews
 struct LoginView_Previews: PreviewProvider {
     private static let model: Model = MockModel()
-    
     
     static var previews: some View {
         ForEach(ColorScheme.allCases, id: \.self) { colorScheme in

@@ -8,7 +8,6 @@
 
 import SwiftUI
 
-
 // MARK: LoginTextFieldStyle
 /// A `TextFieldStyle` that adds styles the textfiled with a `secondarySystemBackground` colored background
 /// and a small border around the text

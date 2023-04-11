@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 // MARK: MockModel
 /// A `Model` that replaces the content of the Xpense app with a predefined set of elements evey time it is initialized
 @available(iOS 16.0, *)

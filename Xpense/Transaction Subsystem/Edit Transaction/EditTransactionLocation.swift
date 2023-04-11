@@ -9,12 +9,10 @@
 import SwiftUI
 import XpenseModel
 
-
 // MARK: - EditTransactionLocation
 struct EditTransactionLocation: View {
     /// The `EditTransactionViewModel` that manages the content of the view
     @ObservedObject var viewModel: EditTransactionViewModel
-    
     
     var body: some View {
         Section(header: Text("Location")) {
@@ -38,11 +36,9 @@ struct EditTransactionLocation: View {
     }
 }
 
-
 // MARK: - EditTransactionLocation Previews
 struct EditTransactionLocation_Previews: PreviewProvider {
     private static let model: Model = MockModel()
-    
     
     static var previews: some View {
         EditTransactionLocation(viewModel: EditTransactionViewModel(model, id: model.transactions[0].id))

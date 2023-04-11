@@ -10,7 +10,6 @@
 import SwiftUI
 import XpenseModel
 
-
 // MARK: - AccountDetailLink
 /// A label with a card background showing the name of an `Account` and the option to navigate to that `Account`
 struct AccountDetailLink: View {
@@ -20,7 +19,6 @@ struct AccountDetailLink: View {
     var disableLink: Bool {
         path.count >= 2
     }
-    
     @Binding var path: [ContentLink]
     
     /// The `Account`'s identifier that should be used to display the corresponding `Account`
@@ -31,7 +29,6 @@ struct AccountDetailLink: View {
     /// Wrapping the property with `@State` would move the storage of the property out if the `AccountDetailLink` struct. This would result in
     /// SwiftUI injecting the value every time the view is evaluated, resulting in an outdated view representation.
     var id: Account.ID
-    
     
     var body: some View {
         model.account(id).map { account in
@@ -53,13 +50,11 @@ struct AccountDetailLink: View {
     }
 }
 
-
 // MARK: - AccountDetailLink Previews
 struct AccountDetailLink_Previews: PreviewProvider {
     private static let model: Model = MockModel()
     private static var accountId = model.accounts[0].id
     @State static var path: [ContentLink] = []
-    
     
     static var previews: some View {
         ForEach(ContentSizeCategory.allCases, id: \.hashValue) { contentSizeCategory in

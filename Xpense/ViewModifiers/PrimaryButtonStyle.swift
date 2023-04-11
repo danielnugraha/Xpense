@@ -8,7 +8,6 @@
 
 import SwiftUI
 
-
 // MARK: PrimaryButtonStyle
 /// A `ButtonStyle` that adds a prominent backgrond as well as the ability to animate a loading process
 /// in the `Button` using a `ProgressView`
@@ -24,7 +23,6 @@ struct PrimaryButtonStyle: ButtonStyle {
         
         /// The configuration that is passed to the `ButtonStyle` and handed to the wrapper button
         let configuration: ButtonStyle.Configuration
-        
         
         var body: some View {
             HStack {
@@ -56,11 +54,9 @@ struct PrimaryButtonStyle: ButtonStyle {
         }
     }
     
-    
     /// Indicates whether the button's `ProgressView` should be shown and animating or
     /// if the `label` of the button should be shown
     @Binding var animating: Bool
-    
     
     /// Returns the appearance and interaction content for a `Button`
     func makeBody(configuration: Self.Configuration) -> some View {

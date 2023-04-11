@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 // MARK: SignUpMediator
 /// A mediator to interface with the Xpense Server sign up process
 struct SignUpMediator: Codable {

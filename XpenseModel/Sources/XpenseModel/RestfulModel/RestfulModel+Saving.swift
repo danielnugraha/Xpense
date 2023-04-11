@@ -9,7 +9,6 @@
 
 import Foundation
 
-
 // MARK: RestfulModel + Save
 @available(iOS 16.0, *)
 extension RestfulModel {

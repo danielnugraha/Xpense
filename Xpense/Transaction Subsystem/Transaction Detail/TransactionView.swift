@@ -10,7 +10,6 @@
 import SwiftUI
 import XpenseModel
 
-
 // MARK: - TransactionView
 /// Detail view for a single `Transaction` including all its information
 struct TransactionView: View {
@@ -20,12 +19,10 @@ struct TransactionView: View {
     
     /// Indicates whether the edit transaction sheet is supposed to be presented
     @State private var edit = false
-    
     @ObservedObject var contentState: ContentState
     
     /// The `Transaction`'s identifier that should be displayed
     var id: XpenseModel.Transaction.ID
-    
     
     var body: some View {
         TransactionSummary(id: id, path: $contentState.path)
@@ -38,7 +35,6 @@ struct TransactionView: View {
             }
     }
 }
-
 
 // MARK: - TransactionView Previews
 struct TransactionView_Previews: PreviewProvider {

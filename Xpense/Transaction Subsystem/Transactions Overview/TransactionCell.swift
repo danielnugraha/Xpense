@@ -9,7 +9,6 @@
 import SwiftUI
 import XpenseModel
 
-
 // MARK: - TransactionCell
 /// A list cell representing a single `Transaction`
 struct TransactionCell: View {
@@ -18,7 +17,6 @@ struct TransactionCell: View {
     
     /// The `Transaction`'s identifier that should be displayed in the `TransactionCell`
     var id: XpenseModel.Transaction.ID
-    
     
     var body: some View {
         model.transaction(id).map { transaction in
@@ -39,11 +37,9 @@ struct TransactionCell: View {
     }
 }
 
-
 // MARK: - TransactionCell Previews
 struct TransactionCell_Previews: PreviewProvider {
     private static let model: Model = MockModel()
-    
     
     static var previews: some View {
         ForEach(ColorScheme.allCases, id: \.hashValue) { colorScheme in

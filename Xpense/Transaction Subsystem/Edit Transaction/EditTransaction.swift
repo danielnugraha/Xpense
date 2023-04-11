@@ -11,7 +11,6 @@ import SwiftUI
 import XpenseModel
 import CoreLocation
 
-
 // MARK: - EditTransaction
 /// A view that enables the user to edit a `Transaction`
 struct EditTransaction: View {
@@ -66,7 +65,6 @@ struct EditTransaction: View {
                             .keyboardType(.decimalPad) // Show only numbers and a dot
                             .focused($focusedField, equals: .amount)
                     }
-                    
                     Picker("Transaction Type", selection: $viewModel.classification) {
                         ForEach(XpenseModel.Transaction.Classification.allCases) { transactionType in
                             Text(transactionType.rawValue).tag(transactionType)
@@ -96,17 +94,14 @@ struct EditTransaction: View {
                     Text("Date")
                 }
             }
-            
             EditTransactionLocation(viewModel: viewModel)
         }
     }
 }
 
-
 // MARK: - EditTransaction Previews
 struct EditTransaction_Previews: PreviewProvider {
     private static let model: Model = MockModel()
-    
     
     static var previews: some View {
         EditTransaction(model, id: model.transactions[0].id)

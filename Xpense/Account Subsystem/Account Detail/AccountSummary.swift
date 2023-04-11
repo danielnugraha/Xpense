@@ -10,7 +10,6 @@
 import SwiftUI
 import XpenseModel
 
-
 // MARK: - AccountsSummary
 /// An overview of an existing `Account`'s balance and its `Transaction`s.
 struct AccountSummary: View {
@@ -21,7 +20,6 @@ struct AccountSummary: View {
     var id: Account.ID
     
     @Binding var path: [ContentLink]
-    
     
     var body: some View {
         VStack {
@@ -38,7 +36,6 @@ struct AccountSummary_Previews: PreviewProvider {
     private static let model: Model = MockModel()
     private static var accountId = model.accounts[0].id
     @State static var path: [ContentLink] = []
-    
     
     static var previews: some View {
         ForEach(ColorScheme.allCases, id: \.self) { colorScheme in

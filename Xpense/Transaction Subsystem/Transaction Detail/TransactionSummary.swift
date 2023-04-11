@@ -10,7 +10,6 @@
 import SwiftUI
 import XpenseModel
 
-
 // MARK: - TransactionSummary
 /// Displays the information about a `Transaction` including all its information
 struct TransactionSummary: View {
@@ -19,9 +18,7 @@ struct TransactionSummary: View {
     
     /// The `Transaction`'s identifier that should be displayed
     var id: XpenseModel.Transaction.ID
-    
     @Binding var path: [ContentLink]
-    
     
     var body: some View {
         model.transaction(id).map { transaction in
@@ -48,7 +45,6 @@ struct TransactionSummary: View {
         }
     }
 }
-
 
 // MARK: - TransactionSummary Previews
 struct TransactionSummary_Previews: PreviewProvider {

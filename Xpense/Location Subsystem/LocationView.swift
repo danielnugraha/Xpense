@@ -10,7 +10,6 @@ import SwiftUI
 import MapKit
 import XpenseModel
 
-
 // MARK: - LocationView
 /// A view to showcase a location on a map
 struct LocationView: View {
@@ -19,7 +18,6 @@ struct LocationView: View {
         /// The default span for the `LocationView`
         static let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
     }
-    
     
     /// The coordinate of the pin on the map
     var coordinate: CLLocationCoordinate2D
@@ -36,7 +34,6 @@ struct LocationView: View {
         }
     }
 }
-
 
 // MARK: - LocationView Previews
 struct LocationView_Previews: PreviewProvider {

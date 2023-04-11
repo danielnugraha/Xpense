@@ -8,7 +8,6 @@
 
 import MapKit
 
-
 /// Used to have identifiable annotation items for a SwiftUI Map View
 struct IdentifiableCoordinate2DWrapper: Identifiable {
     /// Uniquly identifies a `IdentifiableCoordinate2DWrapper`

@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 // MARK: Array + Replace and Sort
 extension Array where Element: Identifiable & Codable & Comparable {
     /// Replaces all instances in the Array that have the same `id ` as `element`, appends the `element` and sorts the `Array`

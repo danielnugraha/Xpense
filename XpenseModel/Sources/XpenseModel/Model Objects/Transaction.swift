@@ -10,14 +10,12 @@
 import Foundation
 import SwiftUI
 
-
 // MARK: - Transaction
 /// Represents a single transaction of an `Account`
 public struct Transaction {
     // MARK: - Cent
     /// The base type for all Currencies in the Xpense Application
     public typealias Cent = Int
-    
     
     // MARK: - Classification
     /// Classifies `Transactions` into Incomes and Expenses.
@@ -28,7 +26,6 @@ public struct Transaction {
         case expense = "Expense"
         /// An Income
         case income = "Income"
-        
         
         public var id: String {
             self.rawValue
@@ -61,7 +58,6 @@ public struct Transaction {
             self == .income ? .green : .red
         }
         
-        
         /// Create a new `Classification`
         /// - Parameter amount: The amount of the transaction.
         ///
@@ -70,7 +66,6 @@ public struct Transaction {
             self = amount < 0 ? .expense : .income
         }
     }
-    
     
     /// The stable identity of the entity associated with self
     public var id: UUID?
@@ -84,7 +79,6 @@ public struct Transaction {
     public var location: Coordinate?
     /// The `Account` this `Transaction` is linked to
     public var account: UUID
-    
     
     /// Converts this `Transaction`'s amount into a textual representation
     public var amountDescription: String {
@@ -112,7 +106,6 @@ public struct Transaction {
         Classification(amount)
     }
     
-    
     /// - Parameters:
     ///     - id: The stable identity of the `Transaction`
     ///     - amount: The amount of money this transaction is worth in `Cent`s
@@ -135,14 +128,11 @@ public struct Transaction {
     }
 }
 
-
 // MARK: Transaction: Identifiable
 extension Transaction: Identifiable { }
 
-
 // MARK: Transaction: Hashable
 extension Transaction: Hashable { }
-
 
 // MARK: Transaction: Comparable
 extension Transaction: Comparable {

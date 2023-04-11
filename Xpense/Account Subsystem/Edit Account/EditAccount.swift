@@ -10,14 +10,12 @@
 import SwiftUI
 import XpenseModel
 
-
 // MARK: - EditAccount
 /// A view that enables the user to edit an `Account`
 struct EditAccount: View {
     /// The `EditAccountViewModel` that manages the content of the view
     @StateObject private var viewModel: EditAccountViewModel
     @Binding private var path: [ContentLink]
-    
     
     var body: some View {
         NavigationStack {
@@ -55,7 +53,6 @@ struct EditAccount: View {
         }
     }
     
-    
     /// - Parameter model: The `Model` that is used to manage the `Account`s of the Xpense Application
     /// - Parameter id: The `Account`'s identifier that should be edited
     init(_ model: Model, path: Binding<[ContentLink]>, id: XpenseModel.Account.ID) {
@@ -63,7 +60,6 @@ struct EditAccount: View {
         self._path = path
     }
 }
-
 
 // MARK: - DeleteButton
 /// A button that deletes an `Account` used in the `EditAccount` view
@@ -75,7 +71,6 @@ private struct DeleteButton: View {
     @ObservedObject var viewModel: EditAccountViewModel
     
     var additionalAction: (() -> Void)?
-    
     
     var body: some View {
         Button(action: { viewModel.showDeleteAlert = true }) {
@@ -102,7 +97,6 @@ private struct DeleteButton: View {
               secondaryButton: .cancel())
     }
     
-    
     /// Uses the `EditAccountViewModel` to delete the account
     private func delete() {
         Task {
@@ -112,7 +106,6 @@ private struct DeleteButton: View {
         }
     }
 }
-
 
 // MARK: - EditAccount Previews
 struct EditAccount_Previews: PreviewProvider {

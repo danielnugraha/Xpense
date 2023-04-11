@@ -9,7 +9,6 @@
 import SwiftUI
 import XpenseModel
 
-
 // MARK: - UserButton
 /// Button that is used to show information about the current `User`
 struct UserButton: View {
@@ -37,7 +36,6 @@ struct UserButton: View {
                      secondaryButton: .default(Text("OK")))
     }
 }
-
 
 // MARK: - UserButton Previews
 struct UserButton_Previews: PreviewProvider {

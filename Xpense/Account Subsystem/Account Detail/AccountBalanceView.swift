@@ -9,7 +9,6 @@
 import SwiftUI
 import XpenseModel
 
-
 // MARK: - AccountBalanceView
 /// A rounded label displaying an `Account`'s balance
 struct AccountBalanceView: View {
@@ -18,7 +17,6 @@ struct AccountBalanceView: View {
     
     /// The `Account`'s identifier
     var id: Account.ID
-    
     
     var body: some View {
         Group {
@@ -35,13 +33,10 @@ struct AccountBalanceView: View {
     }
 }
 
-
 // MARK: - AccountBalanceView Previews
 struct AccountBalanceView_Previews: PreviewProvider {
     private static let model: Model = MockModel()
-    
     @State private static var accountId = model.accounts[0].id
-    
     
     static var previews: some View {
         ForEach(ColorScheme.allCases, id: \.self) { colorScheme in

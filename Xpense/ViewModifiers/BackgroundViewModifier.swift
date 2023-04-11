@@ -8,7 +8,6 @@
 
 import SwiftUI
 
-
 // MARK: - BackgroundViewModifier
 /// A `ViewModifier` to style a `View` with a system background color
 private struct BackgroundViewModifier: ViewModifier {
@@ -21,7 +20,6 @@ private struct BackgroundViewModifier: ViewModifier {
             )
     }
 }
-
 
 // MARK: - View + BackgroundViewModifier
 extension View {

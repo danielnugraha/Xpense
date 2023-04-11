@@ -9,13 +9,11 @@
 import SwiftUI
 import XpenseModel
 
-
 // MARK: - LoginButtons
 /// The buttons that display the primary and secondary buttons for the login screen
 struct LoginButtons: View {
     /// The `LoginViewModel` that manages the content of the login screen
     @ObservedObject var viewModel: LoginViewModel
-    
     
     var body: some View {
         VStack(spacing: 0) {
@@ -31,7 +29,6 @@ struct LoginButtons: View {
         }
     }
 }
-
 
 // MARK: - LoginButtons Previews
 struct LoginButtons_Previews: PreviewProvider {

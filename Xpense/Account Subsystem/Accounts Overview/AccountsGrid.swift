@@ -10,19 +10,16 @@
 import SwiftUI
 import XpenseModel
 
-
 // MARK: - AccountsGrid
 struct AccountsGrid: View {
     /// The `Model` the   `Account`s shall be read from
     @EnvironmentObject private var model: Model
-    
     @Binding var path: [ContentLink]
     
     /// The columns of the `LazyVGrid` that enable a dynamic layout for differet device sizes
     let columns = [
         GridItem(.adaptive(minimum: 140), spacing: 16)
     ]
-    
     
     var body: some View {
         LazyVGrid(columns: columns, spacing: 16) {
@@ -46,7 +43,6 @@ struct AccountsGrid: View {
         .padding(.horizontal, 16)
     }
 }
-
 
 // MARK: - AccountsGrid Previews
 struct AccountsGrid_Previews: PreviewProvider {

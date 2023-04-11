@@ -10,7 +10,6 @@
 import SwiftUI
 import XpenseModel
 
-
 // MARK: - MainView
 /// The entry-point of the app.
 struct MainView: View {
@@ -28,7 +27,6 @@ struct MainView: View {
         }
     }
 }
-
 
 // MARK: - MainView Previews
 struct MainView_Previews: PreviewProvider {

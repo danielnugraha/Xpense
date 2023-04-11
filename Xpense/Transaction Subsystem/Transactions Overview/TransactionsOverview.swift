@@ -26,7 +26,6 @@ struct TransactionsOverview: View {
     }
 }
 
-
 // MARK: - TransactionsOverview Previews
 struct TransactionsOverview_Previews: PreviewProvider {
     static var previews: some View {
