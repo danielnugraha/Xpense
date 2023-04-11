@@ -9,7 +9,6 @@
 
 import Foundation
 
-
 // MARK: User
 /// Represents a User of the Xpense Application
 public struct User {
@@ -17,7 +16,6 @@ public struct User {
     public var name: String
     /// The token that is used to authenticate the `User` on the XpenseServer
     var token: String?
-    
     
     /// The `token` of the `User` transformed into the bearer token format
     var bearerToken: String? {
@@ -32,7 +30,6 @@ public struct User {
         self.token = token
     }
 }
-
 
 // MARK: User: Codable
 extension User: Codable {}

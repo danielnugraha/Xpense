@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 extension DateFormatter {
     /// Formatter that includes the date as well as the time.
     ///

@@ -9,7 +9,6 @@
 
 import Foundation
 
-
 // MARK: RestfulModel + User Handling
 @available(iOS 16.0, *)
 extension RestfulModel {
@@ -25,7 +24,6 @@ extension RestfulModel {
             on: usersRoute)
     }
 
-    
     /// Sends a login request to the Xpense Server and parses the corresponding response and updates the `Model`
     /// - Parameters:
     ///   - name: The name that should be used to login

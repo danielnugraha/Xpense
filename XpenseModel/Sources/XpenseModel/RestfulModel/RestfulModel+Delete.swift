@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 // MARK: RestfulModel + Delete
 @available(iOS 16.0, *)
 extension RestfulModel {

@@ -8,8 +8,7 @@
 
 import SwiftUI
 
-
-// MARK: ActiivityButtonStyle
+// MARK: ActivityButtonStyle
 /// A `ButtonStyle` that adds the ability to animate a loading process in the `Button` using a `ProgressView`
 struct ProgressViewButtonStyle: ButtonStyle {
     /// The wrapper that is used to e.g. get the `isEnabled` state of the Button
@@ -27,7 +26,6 @@ struct ProgressViewButtonStyle: ButtonStyle {
         let progressViewColor: Color
         /// Defines the color of the button when it is enabled
         let foregroundColor: Color
-        
         
         var body: some View {
             if animating {
@@ -49,7 +47,6 @@ struct ProgressViewButtonStyle: ButtonStyle {
         }
     }
     
-    
     /// Indicates whether the button's `ProgressView` should be shown and animating or
     /// if the `label` of the button should be shown
     @Binding var animating: Bool
@@ -58,7 +55,6 @@ struct ProgressViewButtonStyle: ButtonStyle {
     var progressViewColor: Color = .black
     /// Defines the color of the button when it is enabled
     var foregroundColor: Color = .accentColor
-    
     
     /// Returns the appearance and interaction content for a `Button`
     func makeBody(configuration: Self.Configuration) -> some View {

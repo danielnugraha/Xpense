@@ -10,13 +10,11 @@
 import SwiftUI
 import XpenseModel
 
- 
 // MARK: - TransactionsList
 /// A list of all `Transaction`s in the Xpense Application with an option to filter the `Transaction`s using the `filter` property
 struct TransactionsList: View {
     /// The model to read the transactions from
     @EnvironmentObject private var model: Model
-    
     @Binding var path: [ContentLink]
     
     /// A filter function that is used to filter the `Transaction`s in the Xpense Application that should be displayed in the `TransactionsList`
@@ -28,7 +26,6 @@ struct TransactionsList: View {
         model.transactions.filter(filter)
     }
     
-    
     var body: some View {
         List {
             ForEach(transactions) { transaction in
@@ -38,7 +35,6 @@ struct TransactionsList: View {
             }.onDelete(perform: delete(at:))
         }
     }
-    
     
     /// Deletes the Transaction at the given index set in the TransactionsList
     /// - Parameters:
@@ -64,7 +60,6 @@ struct TransactionsList: View {
             }
     }
 }
-
 
 // MARK: - TransactionsList Previews
 struct TransactionsList_Previews: PreviewProvider {

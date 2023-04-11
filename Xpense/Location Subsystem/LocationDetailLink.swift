@@ -11,7 +11,6 @@ import CoreLocation
 import MapKit
 import XpenseModel
 
-
 // MARK: - LocationDetailLink
 /// A view to showcase a location on a map with the option to click on the map to interact with using a `NavigationLink`
 struct LocationDetailLink: View {
@@ -19,10 +18,7 @@ struct LocationDetailLink: View {
     var coordinate: CLLocationCoordinate2D
     /// The navigationbar title that should be displayed in the detail view
     var navigationTitle: String
-    
-    //@Binding var path: NavigationPath
-    
-    
+
     var body: some View {
         NavigationLink(destination: locationView) {
             LocationView(coordinate: coordinate)
@@ -41,11 +37,9 @@ struct LocationDetailLink: View {
     }
 }
 
-
 // MARK: - LocationDetailLink Previews
 struct LocationDetailLink_Previews: PreviewProvider {
     private static var transaction = MockModel().transactions[0]
-    
     
     static var previews: some View {
         NavigationStack {

@@ -9,13 +9,11 @@
 
 import Foundation
 
-
 // MARK: Restful
 /// A Restful Element that can be created, read, updated, and deleted from a Restful Server
 protocol Restful: Codable & Identifiable & Comparable {
     /// The route that should be used to retrieve and store the RESTful Element from the Server
     static var route: URL { get }
-    
     
     /// Gets the elements from the RESTful Server
     static func get() async throws -> [Self]
@@ -23,14 +21,12 @@ protocol Restful: Codable & Identifiable & Comparable {
     /// Deletes the element from the Restful Server
     static func delete(id: Self.ID) async throws
     
-    
     /// Posts the element to the Restful Server
     func post() async throws -> Self
     
     /// Puts the element to the Restful Server
     func put() async throws -> Self
 }
-
 
 // MARK: Restful
 extension Restful where Self.ID == UUID? {
@@ -42,12 +38,10 @@ extension Restful where Self.ID == UUID? {
         }
     }
     
-    
     func post() async throws -> Self {
         try await NetworkManager.postElement(self, on: Self.route)
     }
 }
-
 
 // MARK: Restful + Identifiable UUID
 extension Restful where Self.ID == UUID? {

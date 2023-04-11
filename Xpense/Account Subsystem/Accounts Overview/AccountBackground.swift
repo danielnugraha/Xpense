@@ -8,7 +8,6 @@
 
 import SwiftUI
 
-
 // MARK: - AccountBackground
 /// The background of an Account view drawing a rounded rectangle including a shaddow
 struct AccountBackground: View {
@@ -22,7 +21,6 @@ struct AccountBackground: View {
             .shadow(radius: 3)
     }
 }
-
 
 // MARK: - AccountBackground
 struct AccountBackground_Previews: PreviewProvider {

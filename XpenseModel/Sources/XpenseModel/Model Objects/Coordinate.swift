@@ -9,7 +9,6 @@
 import Foundation
 import CoreLocation
 
-
 // MARK: Coordinate
 /// Represents a single point on earth, specified by latitude and longitude.
 public struct Coordinate {
@@ -18,12 +17,10 @@ public struct Coordinate {
     /// The longitude of the Coordinate
     var longitude: Double
     
-    
     /// This `Transaction`'s location stored as a 2D Core Location Coordinate
     public var clCoordinate: CLLocationCoordinate2D? {
         CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
-    
     
     /// - Parameters:
     ///   - latitude: The latitude of the Coordinate
@@ -41,10 +38,8 @@ public struct Coordinate {
     }
 }
 
-
 // MARK: Coordinate: Codable
 extension Coordinate: Codable {}
-
 
 // MARK: Coordinate: Hashable
 extension Coordinate: Hashable {}

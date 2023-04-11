@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 extension RelativeDateTimeFormatter {
     /// Gives a relative date description.
     ///

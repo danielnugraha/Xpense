@@ -10,7 +10,6 @@
 import SwiftUI
 import XpenseModel
 
-
 // MARK: - AccountsOverview
 /// An overview of all `Account`s the Xpense Application
 struct AccountsOverview: View {
@@ -32,7 +31,6 @@ struct AccountsOverview: View {
         }.backgroundViewModifier()
     }
 }
-
 
 // MARK: - AccountsView Previews
 struct AccountsView_Previews: PreviewProvider {

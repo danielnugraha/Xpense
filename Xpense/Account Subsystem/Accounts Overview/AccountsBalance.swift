@@ -9,7 +9,6 @@
 import SwiftUI
 import XpenseModel
 
-
 // MARK: - AccountsBalance
 /// Shows the combined balance of all `Account`s the Xpense Application
 struct AccountsBalance: View {
@@ -17,7 +16,6 @@ struct AccountsBalance: View {
     @EnvironmentObject private var model: Model
     /// The current system `ColorScheme`
     @Environment(\.colorScheme) var colorScheme: ColorScheme
-    
     
     var body: some View {
         HStack {
@@ -34,7 +32,6 @@ struct AccountsBalance: View {
             .padding(.horizontal, 16)
     }
 }
-
 
 // MARK: - AccountsBalance Previews
 struct AccountsBalance_Previews: PreviewProvider {

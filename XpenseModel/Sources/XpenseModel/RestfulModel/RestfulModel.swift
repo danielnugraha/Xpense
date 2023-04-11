@@ -9,7 +9,6 @@
 
 import Foundation
 
-
 // MARK: RestfulModel
 /// Handles storing and loading Xpense relevant data from and to a RESTful server.
 @available(iOS 16.0, *)

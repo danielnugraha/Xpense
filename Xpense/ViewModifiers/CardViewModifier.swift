@@ -8,7 +8,6 @@
 
 import SwiftUI
 
-
 // MARK: - CardViewModifier
 /// A `ViewModifier` to style a `View` with a card style background
 struct CardViewModifier: ViewModifier {
@@ -19,7 +18,6 @@ struct CardViewModifier: ViewModifier {
             .cornerRadius(15)
     }
 }
-
 
 // MARK: - View + CardViewModifier
 extension View {

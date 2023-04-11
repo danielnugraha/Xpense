@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 // MARK: XpenseServiceError
 /// An `Error` that details possible errors that can occur when interacting with Xpense Server
 public enum XpenseServiceError: Error {
@@ -24,7 +23,6 @@ public enum XpenseServiceError: Error {
     case deleteFailed(Codable.Type)
     /// Use this error if the user token seems to have expired and the user needs to login again
     case unknown
-    
     
     public var localizedDescription: String {
         // swiftlint:disable line_length

@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 extension NumberFormatter {
     /// Converts a cent-value to a readable currency value. The currency symbol is added depending on your locale.
     ///

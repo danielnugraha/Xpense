@@ -9,13 +9,11 @@
 import SwiftUI
 import XpenseModel
 
-
 // MARK: - LoginTextFields
 /// The view that displays the `TextField` for the login screen
 struct LoginTextFields: View {
     /// The `LoginViewModel` that manages the content of the login screen
     @ObservedObject var viewModel: LoginViewModel
-    
     
     var body: some View {
         VStack(spacing: 0) {
@@ -35,7 +33,6 @@ struct LoginTextFields: View {
         }
     }
 }
-
 
 // MARK: - LoginTextFields Previews
 struct LoginTextFields_Previews: PreviewProvider {

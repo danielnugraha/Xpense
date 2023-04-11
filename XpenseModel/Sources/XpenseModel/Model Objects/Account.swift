@@ -9,7 +9,6 @@
 
 import Foundation
 
-
 // MARK: Account
 /// Represents a single account that consists of a set of transactions.
 @available(iOS 16.0, *)
@@ -19,7 +18,6 @@ public struct Account {
     /// The name of the `Account`
     public var name: String
     
-    
     /// - Parameters:
     ///   - id: The stable identity of the `Account`
     ///   - name: The name of the `Account`
@@ -27,7 +25,6 @@ public struct Account {
         self.id = id
         self.name = name
     }
-    
     
     /// Finds all transactions that belong to this account.
     /// - Parameters:
@@ -54,7 +51,6 @@ public struct Account {
     }
 }
 
-
 // MARK: Account: CustomStringConvertible
 @available(iOS 16.0, *)
 extension Account: CustomStringConvertible {
@@ -63,16 +59,13 @@ extension Account: CustomStringConvertible {
     }
 }
 
-
 // MARK: Account: Identifiable
 @available(iOS 16.0, *)
 extension Account: Identifiable { }
 
-
 // MARK: Account: Hashable
 @available(iOS 16.0, *)
 extension Account: Hashable { }
-
 
 // MARK: Account: Comparable
 @available(iOS 16.0, *)

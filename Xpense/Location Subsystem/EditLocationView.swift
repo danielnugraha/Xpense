@@ -10,7 +10,6 @@ import SwiftUI
 import MapKit
 import XpenseModel
 
-
 // MARK: - EditLocationView
 /// A view that enables a user to select a location on a map view
 struct EditLocationView: View {
@@ -23,7 +22,6 @@ struct EditLocationView: View {
     /// The current coordinate region displayed by the map
     @State var coordinateRegion: MKCoordinateRegion = MKMapView().region
 
-    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -70,7 +68,6 @@ struct EditLocationView: View {
             .foregroundColor(.red)
     }
 }
-
 
 // MARK: - EditLocationView Previews
 struct EditLocationView_Previews: PreviewProvider {

@@ -9,7 +9,6 @@
 import SwiftUI
 import XpenseModel
 
-
 // MARK: - CurrencyViewModifier
 /// A `ViewModifier` to style a `Text` in the common Xpense currency style
 private struct CurrencyViewModifier: ViewModifier {
@@ -19,14 +18,12 @@ private struct CurrencyViewModifier: ViewModifier {
         static let weight: Font.Weight = .regular
     }
     
-    
     /// The size of the currency text
     let size: CGFloat
     /// The weight of the currency text
     let weight: Font.Weight
     /// The classification of the currency to style the color of the text
     let classification: XpenseModel.Transaction.Classification?
-    
     
     /// - Parameters:
     ///   - size: The size of the currency text
@@ -40,14 +37,12 @@ private struct CurrencyViewModifier: ViewModifier {
         self.classification = classification
     }
     
-    
     func body(content: Content) -> some View {
         content
             .font(.system(size: size, weight: weight, design: .rounded))
             .foregroundColor(classification?.color ?? .primary)
     }
 }
-
 
 // MARK: - Text + CurrencyViewModifier
 extension Text {

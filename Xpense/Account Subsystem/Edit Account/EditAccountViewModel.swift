@@ -12,7 +12,6 @@ import CoreLocation
 import XpenseModel
 import SwiftUI
 
-
 // MARK: EditAccountViewModel
 class EditAccountViewModel: ObservableObject {
     /// The `Account`'s name
@@ -29,7 +28,6 @@ class EditAccountViewModel: ObservableObject {
     /// The `Model` that is used to interact with the `Account`s of the Xpense application
     private weak var model: Model?
     
-    
     /// The Accounts of the Xpense App loaded from the `Model`
     var accounts: [Account] {
         model?.accounts ?? []
@@ -39,14 +37,12 @@ class EditAccountViewModel: ObservableObject {
         showSaveProgressView || showDeleteProgressView
     }
     
-    
     /// - Parameter model: The `Model` that is used to interact with the `Account`s of the Xpense application
     /// - Parameter id: The `Account`'s identifier that should be edited
     init(_ model: Model, id: XpenseModel.Account.ID) {
         self.model = model
         self.id = id
     }
-    
     
     /// Updates the `EditViews`'s state like the name based on the `id`
     func updateStates() {
@@ -94,7 +90,6 @@ class EditAccountViewModel: ObservableObject {
     }
 }
 
-
 // MARK: EditAccountViewModel + ErrorViewModel
 extension EditAccountViewModel: ErrorViewModel {
     var errorMessage: String? {
@@ -109,7 +104,6 @@ extension EditAccountViewModel: ErrorViewModel {
         })
     }
 }
-
 
 // MARK: EditAccountViewModel + SaveButtonViewModel
 extension EditAccountViewModel: SaveButtonViewModel {}

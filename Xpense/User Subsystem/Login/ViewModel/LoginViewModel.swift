@@ -10,7 +10,6 @@
 import SwiftUI
 import XpenseModel
 
-
 // MARK: LoginViewModel
 class LoginViewModel: ObservableObject {
     /// The Constants that are used to define the behaviour of the `LoginViewModel`
@@ -38,7 +37,6 @@ class LoginViewModel: ObservableObject {
     /// The `Model` that is used to interact with the `User` of the Xpense application
     private weak var model: Model?
     
-    
     /// Indicates whether the current typed in password is valid according to the rules defined in the `LoginViewModel`
     var validPassword: Bool {
         password.count >= Constants.minimalPasswordLength
@@ -65,12 +63,10 @@ class LoginViewModel: ObservableObject {
         self.model = model
     }
     
-    
     /// The primary action of the login view. The performed action is dependet on the current state of the
     /// login view defined by the `LoginState`
     func primaryAction() {
         loadingInProcess = true
-        
         Task {
             switch state {
             case .login:
